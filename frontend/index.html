@@ -1,0 +1,2514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Life Organizer</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+            min-height: 100vh;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* HEADER */
+
+        header {
+            height: 70px;
+            background: white;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 35px;
+            height: 35px;
+            background: #222;
+            color: white;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .language-select {
+            padding: 9px 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: white;
+        }
+
+        .premium-button {
+            border: none;
+            background: #222;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+        }
+
+        .profile-button {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: none;
+            background: #e8e8e8;
+        }
+
+        /* LAYOUT */
+
+        .layout {
+            display: flex;
+            min-height: calc(100vh - 70px);
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 230px;
+            background: white;
+            border-right: 1px solid #ddd;
+            padding: 20px 12px;
+        }
+
+        .sidebar button {
+            width: 100%;
+            border: none;
+            background: transparent;
+            padding: 12px;
+            text-align: left;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            font-size: 15px;
+        }
+
+        .sidebar button:hover,
+        .sidebar button.active {
+            background: #eeeeee;
+        }
+
+        /* MAIN */
+
+        main {
+            flex: 1;
+            padding: 30px;
+            max-width: 1300px;
+            margin: auto;
+            width: 100%;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        /* CARDS */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        /* TASK FORM */
+
+        .task-form {
+            background: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr auto;
+            gap: 10px;
+        }
+
+        input,
+        select,
+        textarea {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 11px;
+            width: 100%;
+        }
+
+        .add-button {
+            border: none;
+            background: #222;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 8px;
+        }
+
+        /* TASK LIST */
+
+        .task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .task {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .task.completed .task-name {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        .task-info {
+            flex: 1;
+        }
+
+        .task-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .task-details {
+            font-size: 13px;
+            color: #777;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 7px;
+        }
+
+        .small-button {
+            border: 1px solid #ccc;
+            background: white;
+            padding: 7px 10px;
+            border-radius: 7px;
+        }
+
+        .delete-button:hover {
+            background: #eee;
+        }
+
+        /* CALENDAR */
+
+        .calendar-container {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .calendar-header button {
+            border: 1px solid #ccc;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 7px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .calendar-day-name {
+            text-align: center;
+            font-weight: bold;
+            padding: 8px;
+            color: #666;
+        }
+
+        .calendar-day {
+            min-height: 80px;
+            border: 1px solid #eee;
+            border-radius: 7px;
+            padding: 7px;
+            cursor: pointer;
+            background: #fff;
+        }
+
+        .calendar-day:hover {
+            background: #f1f1f1;
+        }
+
+        .calendar-day.today {
+            border: 2px solid #222;
+        }
+
+        .calendar-day.selected {
+            background: #eeeeee;
+        }
+
+        .calendar-day-number {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .calendar-task {
+            font-size: 11px;
+            background: #ddd;
+            padding: 3px;
+            border-radius: 4px;
+            margin-top: 3px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .selected-date {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f7f7f7;
+            border-radius: 8px;
+        }
+
+        /* AI */
+
+        .ai-box {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .ai-box textarea {
+            min-height: 150px;
+            resize: vertical;
+            margin-bottom: 10px;
+        }
+
+        .ai-answer {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            white-space: pre-wrap;
+        }
+
+        /* SETTINGS */
+
+        .settings-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .settings-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .danger-button {
+            background: #222;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+
+        /* PREMIUM */
+
+        .premium-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .premium-card h2 {
+            margin-bottom: 15px;
+        }
+
+        .premium-features {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .premium-features li {
+            padding: 8px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                width: 180px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            header {
+                padding: 0 12px;
+            }
+
+            .header-right .premium-button {
+                display: none;
+            }
+
+            .layout {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                display: flex;
+                overflow-x: auto;
+                padding: 8px;
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .sidebar button {
+                min-width: 110px;
+                margin: 0 3px;
+            }
+
+            main {
+                padding: 15px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .task {
+                align-items: flex-start;
+            }
+
+            .calendar-day {
+                min-height: 55px;
+            }
+
+            .calendar-task {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        <div class="logo-icon">✓</div>
+        <span data-i18n="appName">Life Organizer</span>
+    </div>
+
+    <div class="header-right">
+
+        <select id="languageSelect"
+                class="language-select"
+                onchange="changeLanguage()">
+        </select>
+
+        <button class="premium-button"
+                onclick="showPage('premium')"
+                data-i18n="premium">
+            Premium
+        </button>
+
+        <button class="profile-button"
+                onclick="showPage('settings')">
+            👤
+        </button>
+
+    </div>
+
+</header>
+
+
+<div class="layout">
+
+    <aside class="sidebar">
+
+        <button class="active"
+                onclick="showPage('home')"
+                data-i18n="home">
+            🏠 Home
+        </button>
+
+        <button onclick="showPage('tasks')"
+                data-i18n="myTasks">
+            ✓ My Tasks
+        </button>
+
+        <button onclick="showPage('calendar')"
+                data-i18n="calendar">
+            📅 Calendar
+        </button>
+
+        <button onclick="showPage('ai')"
+                data-i18n="aiTutor">
+            🤖 AI Tutor
+        </button>
+
+        <button onclick="showPage('premium')"
+                data-i18n="premium">
+            ⭐ Premium
+        </button>
+
+        <button onclick="showPage('settings')"
+                data-i18n="settings">
+            ⚙ Settings
+        </button>
+
+    </aside>
+
+
+    <main>
+
+        <!-- HOME -->
+
+        <section id="home" class="page active">
+
+            <h1 data-i18n="dashboard">Dashboard</h1>
+
+            <p class="subtitle"
+               data-i18n="dashboardSubtitle">
+                Organize your life in one place.
+            </p>
+
+
+            <div class="stats">
+
+                <div class="stat-card">
+                    <div data-i18n="totalTasks">
+                        Total Tasks
+                    </div>
+
+                    <div class="stat-number"
+                         id="totalTasks">
+                        0
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div data-i18n="completed">
+                        Completed
+                    </div>
+
+                    <div class="stat-number"
+                         id="completedTasks">
+                        0
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div data-i18n="remaining">
+                        Remaining
+                    </div>
+
+                    <div class="stat-number"
+                         id="remainingTasks">
+                        0
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div data-i18n="today">
+                        Today
+                    </div>
+
+                    <div class="stat-number"
+                         id="todayTasks">
+                        0
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="task-form">
+
+                <h3 data-i18n="quickAdd">
+                    Quick Add Task
+                </h3>
+
+                <br>
+
+                <div class="form-grid">
+
+                    <input
+                        id="homeTaskName"
+                        type="text"
+                        placeholder="Task name"
+                        data-i18n-placeholder="taskName">
+
+                    <input
+                        id="homeTaskDate"
+                        type="date">
+
+                    <input
+                        id="homeTaskTime"
+                        type="time">
+
+                    <select id="homeTaskPriority">
+
+                        <option value="Low"
+                                data-i18n="low">
+                            Low
+                        </option>
+
+                        <option value="Medium"
+                                data-i18n="medium">
+                            Medium
+                        </option>
+
+                        <option value="High"
+                                data-i18n="high">
+                            High
+                        </option>
+
+                    </select>
+
+                    <button class="add-button"
+                            onclick="addHomeTask()"
+                            data-i18n="addTask">
+                        Add Task
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <h2 data-i18n="recentTasks">
+                Recent Tasks
+            </h2>
+
+            <br>
+
+            <div id="homeTaskList"
+                 class="task-list">
+            </div>
+
+        </section>
+
+
+        <!-- TASKS -->
+
+        <section id="tasks" class="page">
+
+            <h1 data-i18n="myTasks">
+                My Tasks
+            </h1>
+
+            <p class="subtitle"
+               data-i18n="manageTasks">
+                Create and manage your tasks.
+            </p>
+
+
+            <div class="task-form">
+
+                <div class="form-grid">
+
+                    <input
+                        id="taskName"
+                        type="text"
+                        placeholder="Task name"
+                        data-i18n-placeholder="taskName">
+
+                    <input
+                        id="taskDate"
+                        type="date">
+
+                    <input
+                        id="taskTime"
+                        type="time">
+
+                    <select id="taskPriority">
+
+                        <option value="Low"
+                                data-i18n="low">
+                            Low
+                        </option>
+
+                        <option value="Medium"
+                                data-i18n="medium">
+                            Medium
+                        </option>
+
+                        <option value="High"
+                                data-i18n="high">
+                            High
+                        </option>
+
+                    </select>
+
+                    <button class="add-button"
+                            onclick="addTask()"
+                            data-i18n="addTask">
+                        Add Task
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div id="taskList"
+                 class="task-list">
+            </div>
+
+        </section>
+
+
+        <!-- CALENDAR -->
+
+        <section id="calendar"
+                 class="page">
+
+            <h1 data-i18n="calendar">
+                Calendar
+            </h1>
+
+            <p class="subtitle"
+               data-i18n="calendarSubtitle">
+                See your tasks by date.
+            </p>
+
+
+            <div class="calendar-container">
+
+                <div class="calendar-header">
+
+                    <button onclick="previousMonth()">
+                        ←
+                    </button>
+
+                    <h2 id="calendarTitle"></h2>
+
+                    <button onclick="nextMonth()">
+                        →
+                    </button>
+
+                </div>
+
+
+                <div class="calendar-grid"
+                     id="calendarGrid">
+                </div>
+
+
+                <div id="selectedDatePanel"
+                     class="selected-date">
+
+                    <strong data-i18n="selectDate">
+                        Select a date
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- AI TUTOR -->
+
+        <section id="ai"
+                 class="page">
+
+            <h1 data-i18n="aiTutor">
+                AI Tutor
+            </h1>
+
+            <p class="subtitle"
+               data-i18n="aiSubtitle">
+                Ask questions and learn step-by-step.
+            </p>
+
+
+            <div class="ai-box">
+
+                <textarea
+                    id="aiQuestion"
+                    placeholder="Ask your question..."
+                    data-i18n-placeholder="askQuestion">
+                </textarea>
+
+                <button class="add-button"
+                        onclick="askAITutor()"
+                        data-i18n="askAI">
+                    Ask AI
+                </button>
+
+
+                <div id="aiAnswer"
+                     class="ai-answer"
+                     style="display:none;">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PREMIUM -->
+
+        <section id="premium"
+                 class="page">
+
+            <h1 data-i18n="premium">
+                Premium
+            </h1>
+
+            <br>
+
+            <div class="premium-card">
+
+                <h2 data-i18n="premiumTitle">
+                    Life Organizer Premium
+                </h2>
+
+                <p data-i18n="premiumDescription">
+                    Unlock more tools for organizing your life.
+                </p>
+
+
+                <ul class="premium-features">
+
+                    <li data-i18n="feature1">
+                        ✓ Advanced AI Tutor
+                    </li>
+
+                    <li data-i18n="feature2">
+                        ✓ Cloud synchronization
+                    </li>
+
+                    <li data-i18n="feature3">
+                        ✓ Advanced reminders
+                    </li>
+
+                    <li data-i18n="feature4">
+                        ✓ More customization
+                    </li>
+
+                </ul>
+
+
+                <button class="premium-button"
+                        onclick="alert('Premium payments will be added later.')"
+                        data-i18n="upgrade">
+                    Upgrade
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- SETTINGS -->
+
+        <section id="settings"
+                 class="page">
+
+            <h1 data-i18n="settings">
+                Settings
+            </h1>
+
+            <br>
+
+
+            <div class="settings-card">
+
+                <h3 data-i18n="language">
+                    Language
+                </h3>
+
+                <br>
+
+                <select id="settingsLanguage"
+                        onchange="changeLanguageFromSettings()">
+                </select>
+
+            </div>
+
+
+            <div class="settings-card">
+
+                <h3 data-i18n="dangerZone">
+                    Danger Zone
+                </h3>
+
+                <p data-i18n="deleteWarning">
+                    Delete all tasks stored on this device.
+                </p>
+
+                <br>
+
+                <button class="danger-button"
+                        onclick="deleteAllTasks()"
+                        data-i18n="deleteAll">
+                    Delete All Tasks
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+
+    /* =========================================================
+       LANGUAGES
+       ========================================================= */
+
+    const languages = {
+
+        /* International */
+
+        "English": "en",
+        "Swedish": "sv",
+        "Spanish": "es",
+        "French": "fr",
+        "German": "de",
+        "Arabic": "ar",
+        "Chinese": "zh",
+        "Japanese": "ja",
+        "Korean": "ko",
+        "Portuguese": "pt",
+        "Italian": "it",
+        "Dutch": "nl",
+        "Turkish": "tr",
+        "Russian": "ru",
+
+        /* India - 22 scheduled languages */
+
+        "Assamese": "as",
+        "Bengali": "bn",
+        "Bodo": "brx",
+        "Dogri": "doi",
+        "Gujarati": "gu",
+        "Hindi": "hi",
+        "Kannada": "kn",
+        "Kashmiri": "ks",
+        "Konkani": "kok",
+        "Maithili": "mai",
+        "Malayalam": "ml",
+        "Manipuri (Meitei)": "mni",
+        "Marathi": "mr",
+        "Nepali": "ne",
+        "Odia": "or",
+        "Punjabi": "pa",
+        "Sanskrit": "sa",
+        "Santali": "sat",
+        "Sindhi": "sd",
+        "Tamil": "ta",
+        "Telugu": "te",
+        "Urdu": "ur"
+    };
+
+
+    /*
+       Basic UI translations.
+
+       The language menu contains all languages above.
+       English, Swedish, Spanish, French, German, Hindi,
+       Tamil, Telugu, Bengali and several others have
+       interface translations here.
+
+       Languages not yet translated use English until
+       their complete translation dictionary is added.
+    */
+
+    const translations = {
+
+        English: {
+            appName: "Life Organizer",
+            home: "🏠 Home",
+            myTasks: "✓ My Tasks",
+            calendar: "📅 Calendar",
+            aiTutor: "🤖 AI Tutor",
+            premium: "⭐ Premium",
+            settings: "⚙ Settings",
+            dashboard: "Dashboard",
+            dashboardSubtitle: "Organize your life in one place.",
+            totalTasks: "Total Tasks",
+            completed: "Completed",
+            remaining: "Remaining",
+            today: "Today",
+            quickAdd: "Quick Add Task",
+            recentTasks: "Recent Tasks",
+            manageTasks: "Create and manage your tasks.",
+            addTask: "Add Task",
+            low: "Low",
+            medium: "Medium",
+            high: "High",
+            taskName: "Task name",
+            calendarSubtitle: "See your tasks by date.",
+            selectDate: "Select a date",
+            aiSubtitle: "Ask questions and learn step-by-step.",
+            askQuestion: "Ask your question...",
+            askAI: "Ask AI",
+            premiumTitle: "Life Organizer Premium",
+            premiumDescription: "Unlock more tools for organizing your life.",
+            feature1: "✓ Advanced AI Tutor",
+            feature2: "✓ Cloud synchronization",
+            feature3: "✓ Advanced reminders",
+            feature4: "✓ More customization",
+            upgrade: "Upgrade",
+            language: "Language",
+            dangerZone: "Danger Zone",
+            deleteWarning: "Delete all tasks stored on this device.",
+            deleteAll: "Delete All Tasks"
+        },
+
+        Swedish: {
+            appName: "Life Organizer",
+            home: "🏠 Hem",
+            myTasks: "✓ Mina uppgifter",
+            calendar: "📅 Kalender",
+            aiTutor: "🤖 AI-lärare",
+            premium: "⭐ Premium",
+            settings: "⚙ Inställningar",
+            dashboard: "Översikt",
+            dashboardSubtitle: "Organisera ditt liv på ett ställe.",
+            totalTasks: "Alla uppgifter",
+            completed: "Klara",
+            remaining: "Återstående",
+            today: "Idag",
+            quickAdd: "Lägg till uppgift",
+            recentTasks: "Senaste uppgifter",
+            manageTasks: "Skapa och hantera dina uppgifter.",
+            addTask: "Lägg till",
+            low: "Låg",
+            medium: "Medel",
+            high: "Hög",
+            taskName: "Uppgiftens namn",
+            calendarSubtitle: "Se dina uppgifter efter datum.",
+            selectDate: "Välj ett datum",
+            aiSubtitle: "Ställ frågor och lär dig steg för steg.",
+            askQuestion: "Ställ din fråga...",
+            askAI: "Fråga AI",
+            premiumTitle: "Life Organizer Premium",
+            premiumDescription: "Få tillgång till fler verktyg.",
+            feature1: "✓ Avancerad AI-lärare",
+            feature2: "✓ Molnsynkronisering",
+            feature3: "✓ Avancerade påminnelser",
+            feature4: "✓ Mer anpassning",
+            upgrade: "Uppgradera",
+            language: "Språk",
+            dangerZone: "Riskzon",
+            deleteWarning: "Ta bort alla uppgifter på den här enheten.",
+            deleteAll: "Ta bort alla uppgifter"
+        },
+
+        Spanish: {
+            appName: "Organizador de Vida",
+            home: "🏠 Inicio",
+            myTasks: "✓ Mis tareas",
+            calendar: "📅 Calendario",
+            aiTutor: "🤖 Tutor de IA",
+            premium: "⭐ Premium",
+            settings: "⚙ Configuración",
+            dashboard: "Panel",
+            dashboardSubtitle: "Organiza tu vida en un solo lugar.",
+            totalTasks: "Tareas totales",
+            completed: "Completadas",
+            remaining: "Restantes",
+            today: "Hoy",
+            quickAdd: "Añadir tarea",
+            recentTasks: "Tareas recientes",
+            manageTasks: "Crea y administra tus tareas.",
+            addTask: "Añadir tarea",
+            low: "Baja",
+            medium: "Media",
+            high: "Alta",
+            taskName: "Nombre de la tarea",
+            calendarSubtitle: "Mira tus tareas por fecha.",
+            selectDate: "Selecciona una fecha",
+            aiSubtitle: "Haz preguntas y aprende paso a paso.",
+            askQuestion: "Haz tu pregunta...",
+            askAI: "Preguntar a IA",
+            premiumTitle: "Life Organizer Premium",
+            premiumDescription: "Desbloquea más herramientas.",
+            feature1: "✓ Tutor de IA avanzado",
+            feature2: "✓ Sincronización en la nube",
+            feature3: "✓ Recordatorios avanzados",
+            feature4: "✓ Más personalización",
+            upgrade: "Actualizar",
+            language: "Idioma",
+            dangerZone: "Zona peligrosa",
+            deleteWarning: "Elimina todas las tareas de este dispositivo.",
+            deleteAll: "Eliminar todas"
+        },
+
+        French: {
+            appName: "Organisateur de Vie",
+            home: "🏠 Accueil",
+            myTasks: "✓ Mes tâches",
+            calendar: "📅 Calendrier",
+            aiTutor: "🤖 Tuteur IA",
+            premium: "⭐ Premium",
+            settings: "⚙ Paramètres",
+            dashboard: "Tableau de bord",
+            dashboardSubtitle: "Organisez votre vie au même endroit.",
+            totalTasks: "Tâches totales",
+            completed: "Terminées",
+            remaining: "Restantes",
+            today: "Aujourd'hui",
+            quickAdd: "Ajouter rapidement",
+            recentTasks: "Tâches récentes",
+            manageTasks: "Créez et gérez vos tâches.",
+            addTask: "Ajouter",
+            low: "Faible",
+            medium: "Moyenne",
+            high: "Élevée",
+            taskName: "Nom de la tâche",
+            calendarSubtitle: "Voir vos tâches par date.",
+            selectDate: "Sélectionnez une date",
+            aiSubtitle: "Posez des questions et apprenez étape par étape.",
+            askQuestion: "Posez votre question...",
+            askAI: "Demander à l'IA",
+            premiumTitle: "Life Organizer Premium",
+            premiumDescription: "Débloquez plus d'outils.",
+            feature1: "✓ Tuteur IA avancé",
+            feature2: "✓ Synchronisation cloud",
+            feature3: "✓ Rappels avancés",
+            feature4: "✓ Plus de personnalisation",
+            upgrade: "Mettre à niveau",
+            language: "Langue",
+            dangerZone: "Zone dangereuse",
+            deleteWarning: "Supprimer toutes les tâches de cet appareil.",
+            deleteAll: "Tout supprimer"
+        },
+
+        German: {
+            appName: "Lebensorganisator",
+            home: "🏠 Startseite",
+            myTasks: "✓ Meine Aufgaben",
+            calendar: "📅 Kalender",
+            aiTutor: "🤖 KI-Tutor",
+            premium: "⭐ Premium",
+            settings: "⚙ Einstellungen",
+            dashboard: "Dashboard",
+            dashboardSubtitle: "Organisiere dein Leben an einem Ort.",
+            totalTasks: "Aufgaben insgesamt",
+            completed: "Erledigt",
+            remaining: "Offen",
+            today: "Heute",
+            quickAdd: "Aufgabe hinzufügen",
+            recentTasks: "Letzte Aufgaben",
+            manageTasks: "Erstelle und verwalte deine Aufgaben.",
+            addTask: "Aufgabe hinzufügen",
+            low: "Niedrig",
+            medium: "Mittel",
+            high: "Hoch",
+            taskName: "Aufgabenname",
+            calendarSubtitle: "Aufgaben nach Datum anzeigen.",
+            selectDate: "Datum auswählen",
+            aiSubtitle: "Stelle Fragen und lerne Schritt für Schritt.",
+            askQuestion: "Deine Frage...",
+            askAI: "KI fragen",
+            premiumTitle: "Life Organizer Premium",
+            premiumDescription: "Schalte weitere Werkzeuge frei.",
+            feature1: "✓ Erweiterter KI-Tutor",
+            feature2: "✓ Cloud-Synchronisierung",
+            feature3: "✓ Erweiterte Erinnerungen",
+            feature4: "✓ Mehr Anpassungen",
+            upgrade: "Upgrade",
+            language: "Sprache",
+            dangerZone: "Gefahrenzone",
+            deleteWarning: "Alle Aufgaben auf diesem Gerät löschen.",
+            deleteAll: "Alle löschen"
+        },
+
+        Hindi: {
+            appName: "लाइफ ऑर्गनाइज़र",
+            home: "🏠 होम",
+            myTasks: "✓ मेरे कार्य",
+            calendar: "📅 कैलेंडर",
+            aiTutor: "🤖 AI ट्यूटर",
+            premium: "⭐ प्रीमियम",
+            settings: "⚙ सेटिंग्स",
+            dashboard: "डैशबोर्ड",
+            dashboardSubtitle: "अपनी जिंदगी को एक जगह व्यवस्थित करें।",
+            totalTasks: "कुल कार्य",
+            completed: "पूर्ण",
+            remaining: "बाकी",
+            today: "आज",
+            quickAdd: "कार्य जोड़ें",
+            recentTasks: "हाल के कार्य",
+            manageTasks: "अपने कार्य बनाएं और प्रबंधित करें।",
+            addTask: "कार्य जोड़ें",
+            low: "कम",
+            medium: "मध्यम",
+            high: "उच्च",
+            taskName: "कार्य का नाम",
+            calendarSubtitle: "तारीख के अनुसार अपने कार्य देखें।",
+            selectDate: "तारीख चुनें",
+            aiSubtitle: "प्रश्न पूछें और चरण-दर-चरण सीखें।",
+            askQuestion: "अपना प्रश्न पूछें...",
+            askAI: "AI से पूछें",
+            premiumTitle: "लाइफ ऑर्गनाइज़र प्रीमियम",
+            premiumDescription: "अधिक टूल प्राप्त करें।",
+            feature1: "✓ उन्नत AI ट्यूटर",
+            feature2: "✓ क्लाउड सिंक्रोनाइज़ेशन",
+            feature3: "✓ उन्नत रिमाइंडर",
+            feature4: "✓ अधिक कस्टमाइज़ेशन",
+            upgrade: "अपग्रेड",
+            language: "भाषा",
+            dangerZone: "खतरे का क्षेत्र",
+            deleteWarning: "इस डिवाइस से सभी कार्य हटाएं।",
+            deleteAll: "सभी कार्य हटाएं"
+        },
+
+        Bengali: {
+            appName: "লাইফ অর্গানাইজার",
+            home: "🏠 হোম",
+            myTasks: "✓ আমার কাজ",
+            calendar: "📅 ক্যালেন্ডার",
+            aiTutor: "🤖 AI টিউটর",
+            premium: "⭐ প্রিমিয়াম",
+            settings: "⚙ সেটিংস",
+            dashboard: "ড্যাশবোর্ড",
+            dashboardSubtitle: "এক জায়গায় আপনার জীবন সংগঠিত করুন।",
+            totalTasks: "মোট কাজ",
+            completed: "সম্পন্ন",
+            remaining: "বাকি",
+            today: "আজ",
+            quickAdd: "কাজ যোগ করুন",
+            recentTasks: "সাম্প্রতিক কাজ",
+            manageTasks: "আপনার কাজ তৈরি ও পরিচালনা করুন।",
+            addTask: "কাজ যোগ করুন",
+            low: "কম",
+            medium: "মাঝারি",
+            high: "উচ্চ",
+            taskName: "কাজের নাম",
+            calendarSubtitle: "তারিখ অনুযায়ী কাজ দেখুন।",
+            selectDate: "তারিখ নির্বাচন করুন",
+            aiSubtitle: "প্রশ্ন করুন এবং ধাপে ধাপে শিখুন।",
+            askQuestion: "আপনার প্রশ্ন...",
+            askAI: "AI-কে জিজ্ঞাসা করুন",
+            premiumTitle: "লাইফ অর্গানাইজার প্রিমিয়াম",
+            premiumDescription: "আরও টুল ব্যবহার করুন।",
+            feature1: "✓ উন্নত AI টিউটর",
+            feature2: "✓ ক্লাউড সিঙ্ক",
+            feature3: "✓ উন্নত রিমাইন্ডার",
+            feature4: "✓ আরও কাস্টমাইজেশন",
+            upgrade: "আপগ্রেড",
+            language: "ভাষা",
+            dangerZone: "ঝুঁকিপূর্ণ এলাকা",
+            deleteWarning: "এই ডিভাইস থেকে সব কাজ মুছে ফেলুন।",
+            deleteAll: "সব মুছে ফেলুন"
+        },
+
+        Tamil: {
+            appName: "லைஃப் ஆர்கனைசர்",
+            home: "🏠 முகப்பு",
+            myTasks: "✓ எனது பணிகள்",
+            calendar: "📅 காலண்டர்",
+            aiTutor: "🤖 AI ஆசிரியர்",
+            premium: "⭐ பிரீமியம்",
+            settings: "⚙ அமைப்புகள்",
+            dashboard: "டாஷ்போர்டு",
+            dashboardSubtitle: "உங்கள் வாழ்க்கையை ஒரே இடத்தில் ஒழுங்குபடுத்துங்கள்.",
+            totalTasks: "மொத்த பணிகள்",
+            completed: "முடிந்தவை",
+            remaining: "மீதமுள்ளவை",
+            today: "இன்று",
+            quickAdd: "பணி சேர்க்கவும்",
+            recentTasks: "சமீபத்திய பணிகள்",
+            manageTasks: "உங்கள் பணிகளை உருவாக்கி நிர்வகிக்கவும்.",
+            addTask: "பணி சேர்க்கவும்",
+            low: "குறைவு",
+            medium: "நடுத்தரம்",
+            high: "அதிகம்",
+            taskName: "பணி பெயர்",
+            calendarSubtitle: "தேதியின் அடிப்படையில் பணிகளைப் பார்க்கவும்.",
+            selectDate: "தேதியைத் தேர்ந்தெடுக்கவும்",
+            aiSubtitle: "கேள்விகள் கேட்டு படிப்படியாக கற்றுக்கொள்ளுங்கள்.",
+            askQuestion: "உங்கள் கேள்வி...",
+            askAI: "AI-யிடம் கேளுங்கள்",
+            premiumTitle: "லைஃப் ஆர்கனைசர் பிரீமியம்",
+            premiumDescription: "மேலும் கருவிகளைப் பெறுங்கள்.",
+            feature1: "✓ மேம்பட்ட AI ஆசிரியர்",
+            feature2: "✓ கிளவுட் ஒத்திசைவு",
+            feature3: "✓ மேம்பட்ட நினைவூட்டல்கள்",
+            feature4: "✓ அதிக தனிப்பயனாக்கம்",
+            upgrade: "மேம்படுத்து",
+            language: "மொழி",
+            dangerZone: "ஆபத்து பகுதி",
+            deleteWarning: "இந்த சாதனத்தில் உள்ள அனைத்து பணிகளையும் நீக்கவும்.",
+            deleteAll: "அனைத்தையும் நீக்கு"
+        },
+
+        Telugu: {
+            appName: "లైఫ్ ఆర్గనైజర్",
+            home: "🏠 హోమ్",
+            myTasks: "✓ నా పనులు",
+            calendar: "📅 క్యాలెండర్",
+            aiTutor: "🤖 AI ట్యూటర్",
+            premium: "⭐ ప్రీమియం",
+            settings: "⚙ సెట్టింగ్స్",
+            dashboard: "డ్యాష్‌బోర్డ్",
+            dashboardSubtitle: "మీ జీవితాన్ని ఒకే చోట నిర్వహించండి.",
+            totalTasks: "మొత్తం పనులు",
+            completed: "పూర్తయినవి",
+            remaining: "మిగిలినవి",
+            today: "ఈ రోజు",
+            quickAdd: "పని జోడించండి",
+            recentTasks: "ఇటీవలి పనులు",
+            manageTasks: "మీ పనులను సృష్టించి నిర్వహించండి.",
+            addTask: "పని జోడించండి",
+            low: "తక్కువ",
+            medium: "మధ్యస్థం",
+            high: "అధికం",
+            taskName: "పని పేరు",
+            calendarSubtitle: "తేదీ ప్రకారం మీ పనులను చూడండి.",
+            selectDate: "తేదీని ఎంచుకోండి",
+            aiSubtitle: "ప్రశ్నలు అడిగి దశలవారీగా నేర్చుకోండి.",
+            askQuestion: "మీ ప్రశ్న...",
+            askAI: "AIని అడగండి",
+            premiumTitle: "లైఫ్ ఆర్గనైజర్ ప్రీమియం",
+            premiumDescription: "మరిన్ని సాధనాలను పొందండి.",
+            feature1: "✓ అధునాతన AI ట్యూటర్",
+            feature2: "✓ క్లౌడ్ సింక్రొనైజేషన్",
+            feature3: "✓ అధునాతన రిమైండర్లు",
+            feature4: "✓ మరింత అనుకూలీకరణ",
+            upgrade: "అప్‌గ్రేడ్",
+            language: "భాష",
+            dangerZone: "ప్రమాద ప్రాంతం",
+            deleteWarning: "ఈ పరికరంలోని అన్ని పనులను తొలగించండి.",
+            deleteAll: "అన్నింటినీ తొలగించండి"
+        },
+
+        Marathi: {
+            appName: "लाइफ ऑर्गनायझर",
+            home: "🏠 होम",
+            myTasks: "✓ माझी कामे",
+            calendar: "📅 कॅलेंडर",
+            aiTutor: "🤖 AI ट्यूटर",
+            premium: "⭐ प्रीमियम",
+            settings: "⚙ सेटिंग्ज",
+            dashboard: "डॅशबोर्ड",
+            dashboardSubtitle: "तुमचे जीवन एका ठिकाणी व्यवस्थित करा.",
+            totalTasks: "एकूण कामे",
+            completed: "पूर्ण",
+            remaining: "उर्वरित",
+            today: "आज",
+            quickAdd: "काम जोडा",
+            recentTasks: "अलीकडील कामे",
+            manageTasks: "तुमची कामे तयार करा आणि व्यवस्थापित करा.",
+            addTask: "काम जोडा",
+            low: "कमी",
+            medium: "मध्यम",
+            high: "जास्त",
+            taskName: "कामाचे नाव",
+            calendarSubtitle: "तारखेनुसार तुमची कामे पहा.",
+            selectDate: "तारीख निवडा",
+            aiSubtitle: "प्रश्न विचारा आणि टप्प्याटप्प्याने शिका.",
+            askQuestion: "तुमचा प्रश्न...",
+            askAI: "AI ला विचारा",
+            premiumTitle: "लाइफ ऑर्गनायझर प्रीमियम",
+            premiumDescription: "अधिक साधने मिळवा.",
+            feature1: "✓ प्रगत AI ट्यूटर",
+            feature2: "✓ क्लाउड सिंक्रोनायझेशन",
+            feature3: "✓ प्रगत स्मरणपत्रे",
+            feature4: "✓ अधिक कस्टमायझेशन",
+            upgrade: "अपग्रेड",
+            language: "भाषा",
+            dangerZone: "धोकादायक क्षेत्र",
+            deleteWarning: "या डिव्हाइसवरील सर्व कामे हटवा.",
+            deleteAll: "सर्व हटवा"
+        }
+    };
+
+
+    /* =========================================================
+       TASK DATA
+       ========================================================= */
+
+    let tasks = JSON.parse(
+        localStorage.getItem("lifeOrganizerTasks") || "[]"
+    );
+
+
+    function saveTasks() {
+
+        localStorage.setItem(
+            "lifeOrganizerTasks",
+            JSON.stringify(tasks)
+        );
+
+    }
+
+
+    /* =========================================================
+       PAGE NAVIGATION
+       ========================================================= */
+
+    function showPage(pageId) {
+
+        document.querySelectorAll(".page").forEach(page => {
+            page.classList.remove("active");
+        });
+
+        const page = document.getElementById(pageId);
+
+        if (page) {
+            page.classList.add("active");
+        }
+
+
+        document.querySelectorAll(".sidebar button").forEach(button => {
+            button.classList.remove("active");
+        });
+
+        const buttons = document.querySelectorAll(".sidebar button");
+
+        buttons.forEach(button => {
+
+            const text = button.innerText.toLowerCase();
+
+            if (
+                (pageId === "home" && text.includes("home")) ||
+                (pageId === "tasks" && text.includes("task")) ||
+                (pageId === "calendar" && text.includes("calendar")) ||
+                (pageId === "ai" && text.includes("ai")) ||
+                (pageId === "premium" && text.includes("premium")) ||
+                (pageId === "settings" && text.includes("settings"))
+            ) {
+                button.classList.add("active");
+            }
+
+        });
+
+
+        if (pageId === "calendar") {
+            renderCalendar();
+        }
+
+    }
+
+
+    /* =========================================================
+       ADD TASK
+       ========================================================= */
+
+    function addTask() {
+
+        const name =
+            document.getElementById("taskName").value.trim();
+
+        const date =
+            document.getElementById("taskDate").value;
+
+        const time =
+            document.getElementById("taskTime").value;
+
+        const priority =
+            document.getElementById("taskPriority").value;
+
+
+        if (!name) {
+
+            alert("Please enter a task name.");
+
+            return;
+        }
+
+
+        const task = {
+
+            id: Date.now(),
+
+            name: name,
+
+            date: date,
+
+            time: time,
+
+            priority: priority,
+
+            completed: false
+
+        };
+
+
+        tasks.push(task);
+
+        saveTasks();
+
+        document.getElementById("taskName").value = "";
+
+        document.getElementById("taskDate").value = "";
+
+        document.getElementById("taskTime").value = "";
+
+        renderTasks();
+
+        updateStats();
+
+        renderCalendar();
+
+    }
+
+
+    function addHomeTask() {
+
+        const name =
+            document.getElementById("homeTaskName").value.trim();
+
+        const date =
+            document.getElementById("homeTaskDate").value;
+
+        const time =
+            document.getElementById("homeTaskTime").value;
+
+        const priority =
+            document.getElementById("homeTaskPriority").value;
+
+
+        if (!name) {
+
+            alert("Please enter a task name.");
+
+            return;
+        }
+
+
+        tasks.push({
+
+            id: Date.now(),
+
+            name: name,
+
+            date: date,
+
+            time: time,
+
+            priority: priority,
+
+            completed: false
+
+        });
+
+
+        saveTasks();
+
+
+        document.getElementById("homeTaskName").value = "";
+
+        document.getElementById("homeTaskDate").value = "";
+
+        document.getElementById("homeTaskTime").value = "";
+
+
+        renderTasks();
+
+        updateStats();
+
+        renderCalendar();
+
+    }
+
+
+    /* =========================================================
+       TASK RENDERING
+       ========================================================= */
+
+    function renderTasks() {
+
+        const list =
+            document.getElementById("taskList");
+
+        const homeList =
+            document.getElementById("homeTaskList");
+
+
+        list.innerHTML = "";
+
+        homeList.innerHTML = "";
+
+
+        const recentTasks =
+            [...tasks].reverse().slice(0, 5);
+
+
+        tasks.forEach(task => {
+
+            list.appendChild(
+                createTaskElement(task)
+            );
+
+        });
+
+
+        recentTasks.forEach(task => {
+
+            homeList.appendChild(
+                createTaskElement(task)
+            );
+
+        });
+
+
+        if (tasks.length === 0) {
+
+            list.innerHTML =
+                "<p>No tasks yet.</p>";
+
+            homeList.innerHTML =
+                "<p>No tasks yet.</p>";
+
+        }
+
+    }
+
+
+    function createTaskElement(task) {
+
+        const element =
+            document.createElement("div");
+
+        element.className =
+            "task" +
+            (task.completed ? " completed" : "");
+
+
+        let dateText =
+            task.date || "No date";
+
+        let timeText =
+            task.time || "No time";
+
+
+        element.innerHTML = `
+
+            <input
+                type="checkbox"
+                ${task.completed ? "checked" : ""}
+                onchange="toggleTask(${task.id})"
+            >
+
+            <div class="task-info">
+
+                <div class="task-name">
+                    ${escapeHTML(task.name)}
+                </div>
+
+                <div class="task-details">
+                    📅 ${dateText}
+                    &nbsp;&nbsp;
+                    ⏰ ${timeText}
+                    &nbsp;&nbsp;
+                    ⭐ ${escapeHTML(task.priority)}
+                </div>
+
+            </div>
+
+            <div class="task-actions">
+
+                <button
+                    class="small-button"
+                    onclick="editTask(${task.id})">
+                    ✏
+                </button>
+
+                <button
+                    class="small-button delete-button"
+                    onclick="deleteTask(${task.id})">
+                    🗑
+                </button>
+
+            </div>
+        `;
+
+
+        return element;
+
+    }
+
+
+    function escapeHTML(text) {
+
+        const div =
+            document.createElement("div");
+
+        div.textContent = text;
+
+        return div.innerHTML;
+
+    }
+
+
+    /* =========================================================
+       TASK ACTIONS
+       ========================================================= */
+
+    function toggleTask(id) {
+
+        const task =
+            tasks.find(t => t.id === id);
+
+        if (!task) return;
+
+        task.completed =
+            !task.completed;
+
+        saveTasks();
+
+        renderTasks();
+
+        updateStats();
+
+        renderCalendar();
+
+    }
+
+
+    function deleteTask(id) {
+
+        tasks =
+            tasks.filter(task => task.id !== id);
+
+        saveTasks();
+
+        renderTasks();
+
+        updateStats();
+
+        renderCalendar();
+
+    }
+
+
+    function editTask(id) {
+
+        const task =
+            tasks.find(t => t.id === id);
+
+        if (!task) return;
+
+
+        const newName =
+            prompt(
+                "Edit task name:",
+                task.name
+            );
+
+
+        if (newName === null) {
+            return;
+        }
+
+
+        if (newName.trim() === "") {
+            return;
+        }
+
+
+        task.name =
+            newName.trim();
+
+
+        saveTasks();
+
+        renderTasks();
+
+        renderCalendar();
+
+    }
+
+
+    function deleteAllTasks() {
+
+        const confirmation =
+            confirm(
+                "Are you sure you want to delete all tasks?"
+            );
+
+
+        if (!confirmation) {
+            return;
+        }
+
+
+        tasks = [];
+
+        saveTasks();
+
+        renderTasks();
+
+        updateStats();
+
+        renderCalendar();
+
+    }
+
+
+    /* =========================================================
+       STATISTICS
+       ========================================================= */
+
+    function updateStats() {
+
+        const total =
+            tasks.length;
+
+
+        const completed =
+            tasks.filter(
+                task => task.completed
+            ).length;
+
+
+        const remaining =
+            total - completed;
+
+
+        const today =
+            new Date()
+                .toISOString()
+                .split("T")[0];
+
+
+        const todayCount =
+            tasks.filter(
+                task => task.date === today
+            ).length;
+
+
+        document.getElementById(
+            "totalTasks"
+        ).textContent = total;
+
+
+        document.getElementById(
+            "completedTasks"
+        ).textContent = completed;
+
+
+        document.getElementById(
+            "remainingTasks"
+        ).textContent = remaining;
+
+
+        document.getElementById(
+            "todayTasks"
+        ).textContent = todayCount;
+
+    }
+
+
+    /* =========================================================
+       CALENDAR
+       ========================================================= */
+
+    let calendarDate =
+        new Date();
+
+    let selectedDate = null;
+
+
+    function renderCalendar() {
+
+        const grid =
+            document.getElementById(
+                "calendarGrid"
+            );
+
+
+        const title =
+            document.getElementById(
+                "calendarTitle"
+            );
+
+
+        if (!grid || !title) {
+            return;
+        }
+
+
+        grid.innerHTML = "";
+
+
+        const year =
+            calendarDate.getFullYear();
+
+        const month =
+            calendarDate.getMonth();
+
+
+        const monthName =
+            calendarDate.toLocaleString(
+                "default",
+                {
+                    month: "long"
+                }
+            );
+
+
+        title.textContent =
+            `${monthName} ${year}`;
+
+
+        const days =
+            [
+                "Sun",
+                "Mon",
+                "Tue",
+                "Wed",
+                "Thu",
+                "Fri",
+                "Sat"
+            ];
+
+
+        days.forEach(day => {
+
+            const element =
+                document.createElement("div");
+
+            element.className =
+                "calendar-day-name";
+
+            element.textContent =
+                day;
+
+            grid.appendChild(element);
+
+        });
+
+
+        const firstDay =
+            new Date(
+                year,
+                month,
+                1
+            ).getDay();
+
+
+        const daysInMonth =
+            new Date(
+                year,
+                month + 1,
+                0
+            ).getDate();
+
+
+        for (
+            let i = 0;
+            i < firstDay;
+            i++
+        ) {
+
+            const empty =
+                document.createElement("div");
+
+            grid.appendChild(empty);
+
+        }
+
+
+        const today =
+            new Date()
+                .toISOString()
+                .split("T")[0];
+
+
+        for (
+            let day = 1;
+            day <= daysInMonth;
+            day++
+        ) {
+
+            const dateString =
+                `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+
+
+            const element =
+                document.createElement("div");
+
+
+            element.className =
+                "calendar-day";
+
+
+            if (
+                dateString === today
+            ) {
+
+                element.classList.add(
+                    "today"
+                );
+
+            }
+
+
+            if (
+                dateString === selectedDate
+            ) {
+
+                element.classList.add(
+                    "selected"
+                );
+
+            }
+
+
+            element.innerHTML =
+                `<div class="calendar-day-number">${day}</div>`;
+
+
+            const dateTasks =
+                tasks.filter(
+                    task =>
+                        task.date === dateString
+                );
+
+
+            dateTasks
+                .slice(0, 3)
+                .forEach(task => {
+
+                    const taskElement =
+                        document.createElement(
+                            "div"
+                        );
+
+                    taskElement.className =
+                        "calendar-task";
+
+                    taskElement.textContent =
+                        task.name;
+
+                    element.appendChild(
+                        taskElement
+                    );
+
+                });
+
+
+            element.onclick =
+                function() {
+
+                    selectedDate =
+                        dateString;
+
+                    renderCalendar();
+
+                    showSelectedDateTasks(
+                        dateString
+                    );
+
+                };
+
+
+            grid.appendChild(element);
+
+        }
+
+
+        if (selectedDate) {
+
+            showSelectedDateTasks(
+                selectedDate
+            );
+
+        }
+
+    }
+
+
+    function showSelectedDateTasks(date) {
+
+        const panel =
+            document.getElementById(
+                "selectedDatePanel"
+            );
+
+
+        const dateTasks =
+            tasks.filter(
+                task => task.date === date
+            );
+
+
+        let html =
+            `<strong>${date}</strong>`;
+
+
+        if (dateTasks.length === 0) {
+
+            html +=
+                "<p>No tasks on this date.</p>";
+
+        } else {
+
+            html += "<br><br>";
+
+            dateTasks.forEach(task => {
+
+                html += `
+                    <div>
+                        ${task.completed ? "✓" : "○"}
+                        ${escapeHTML(task.name)}
+                        ${task.time ? " - " + task.time : ""}
+                    </div>
+                `;
+
+            });
+
+        }
+
+
+        panel.innerHTML = html;
+
+    }
+
+
+    function previousMonth() {
+
+        calendarDate.setMonth(
+            calendarDate.getMonth() - 1
+        );
+
+        renderCalendar();
+
+    }
+
+
+    function nextMonth() {
+
+        calendarDate.setMonth(
+            calendarDate.getMonth() + 1
+        );
+
+        renderCalendar();
+
+    }
+
+
+    /* =========================================================
+       AI TUTOR
+       ========================================================= */
+
+    async function askAITutor() {
+
+        const question =
+            document.getElementById(
+                "aiQuestion"
+            ).value.trim();
+
+
+        const answerBox =
+            document.getElementById(
+                "aiAnswer"
+            );
+
+
+        if (!question) {
+
+            answerBox.style.display =
+                "block";
+
+            answerBox.textContent =
+                "Please enter a question.";
+
+            return;
+
+        }
+
+
+        answerBox.style.display =
+            "block";
+
+        answerBox.textContent =
+            "AI Tutor is thinking...";
+
+
+        const language =
+            localStorage.getItem(
+                "lifeOrganizerLanguage"
+            ) || "English";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "http://127.0.0.1:5000/ai-tutor",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            question:
+                                question,
+
+                            language:
+                                language
+
+                        })
+
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            answerBox.textContent =
+                data.answer ||
+                "No answer received.";
+
+        }
+
+        catch (error) {
+
+            answerBox.textContent =
+                "The AI Tutor backend is not running yet. Start your Python server and try again.";
+
+        }
+
+    }
+
+
+    /* =========================================================
+       LANGUAGE SYSTEM
+       ========================================================= */
+
+    function populateLanguageSelectors() {
+
+        const selectors = [
+
+            document.getElementById(
+                "languageSelect"
+            ),
+
+            document.getElementById(
+                "settingsLanguage"
+            )
+
+        ];
+
+
+        selectors.forEach(
+            selector => {
+
+                if (!selector) return;
+
+                selector.innerHTML = "";
+
+
+                Object.keys(languages)
+                    .forEach(language => {
+
+                        const option =
+                            document.createElement(
+                                "option"
+                            );
+
+                        option.value =
+                            language;
+
+                        option.textContent =
+                            language;
+
+                        selector.appendChild(
+                            option
+                        );
+
+                    });
+
+            }
+        );
+
+    }
+
+
+    function changeLanguage() {
+
+        const language =
+            document.getElementById(
+                "languageSelect"
+            ).value;
+
+
+        localStorage.setItem(
+            "lifeOrganizerLanguage",
+            language
+        );
+
+
+        applyLanguage(
+            language
+        );
+
+    }
+
+
+    function changeLanguageFromSettings() {
+
+        const language =
+            document.getElementById(
+                "settingsLanguage"
+            ).value;
+
+
+        localStorage.setItem(
+            "lifeOrganizerLanguage",
+            language
+        );
+
+
+        document.getElementById(
+            "languageSelect"
+        ).value = language;
+
+
+        applyLanguage(
+            language
+        );
+
+    }
+
+
+    function applyLanguage(language) {
+
+        const dictionary =
+            translations[language];
+
+
+        /*
+           If the language does not have a
+           complete UI dictionary yet, use
+           English for the interface.
+        */
+
+        const translation =
+            dictionary ||
+            translations.English;
+
+
+        document
+            .querySelectorAll(
+                "[data-i18n]"
+            )
+            .forEach(element => {
+
+                const key =
+                    element.getAttribute(
+                        "data-i18n"
+                    );
+
+
+                if (
+                    translation[key]
+                ) {
+
+                    element.textContent =
+                        translation[key];
+
+                }
+
+            });
+
+
+        document
+            .querySelectorAll(
+                "[data-i18n-placeholder]"
+            )
+            .forEach(element => {
+
+                const key =
+                    element.getAttribute(
+                        "data-i18n-placeholder"
+                    );
+
+
+                if (
+                    translation[key]
+                ) {
+
+                    element.placeholder =
+                        translation[key];
+
+                }
+
+            });
+
+
+        document.getElementById(
+            "languageSelect"
+        ).value = language;
+
+
+        document.getElementById(
+            "settingsLanguage"
+        ).value = language;
+
+
+        /*
+           Arabic and Urdu use right-to-left
+           text direction.
+        */
+
+        if (
+            language === "Arabic" ||
+            language === "Urdu" ||
+            language === "Sindhi" ||
+            language === "Kashmiri"
+        ) {
+
+            document.body.dir =
+                "rtl";
+
+        } else {
+
+            document.body.dir =
+                "ltr";
+
+        }
+
+    }
+
+
+    /* =========================================================
+       START APP
+       ========================================================= */
+
+    function startApp() {
+
+        populateLanguageSelectors();
+
+
+        const savedLanguage =
+            localStorage.getItem(
+                "lifeOrganizerLanguage"
+            ) || "English";
+
+
+        applyLanguage(
+            savedLanguage
+        );
+
+
+        renderTasks();
+
+        updateStats();
+
+        renderCalendar();
+
+    }
+
+
+    startApp();
+
+</script>
+
+</body>
+</html>
