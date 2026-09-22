@@ -823,8 +823,7 @@
                 <textarea
                     id="aiQuestion"
                     placeholder="Ask your question..."
-                    data-i18n-placeholder="askQuestion">
-                </textarea>
+                    data-i18n-placeholder="askQuestion"></textarea>
 
                 <button class="add-button"
                         onclick="askAITutor()"
@@ -959,8 +958,6 @@
 
     const languages = {
 
-        /* International */
-
         "English": "en",
         "Swedish": "sv",
         "Spanish": "es",
@@ -975,8 +972,6 @@
         "Dutch": "nl",
         "Turkish": "tr",
         "Russian": "ru",
-
-        /* India - 22 scheduled languages */
 
         "Assamese": "as",
         "Bengali": "bn",
@@ -1003,17 +998,9 @@
     };
 
 
-    /*
-       Basic UI translations.
-
-       The language menu contains all languages above.
-       English, Swedish, Spanish, French, German, Hindi,
-       Tamil, Telugu, Bengali and several others have
-       interface translations here.
-
-       Languages not yet translated use English until
-       their complete translation dictionary is added.
-    */
+    /* =========================================================
+       TRANSLATIONS
+       ========================================================= */
 
     const translations = {
 
@@ -1454,7 +1441,6 @@
             page.classList.add("active");
         }
 
-
         document.querySelectorAll(".sidebar button").forEach(button => {
             button.classList.remove("active");
         });
@@ -1478,11 +1464,9 @@
 
         });
 
-
         if (pageId === "calendar") {
             renderCalendar();
         }
-
     }
 
 
@@ -1504,48 +1488,31 @@
         const priority =
             document.getElementById("taskPriority").value;
 
-
         if (!name) {
-
             alert("Please enter a task name.");
-
             return;
         }
 
-
         const task = {
-
             id: Date.now(),
-
             name: name,
-
             date: date,
-
             time: time,
-
             priority: priority,
-
             completed: false
-
         };
-
 
         tasks.push(task);
 
         saveTasks();
 
         document.getElementById("taskName").value = "";
-
         document.getElementById("taskDate").value = "";
-
         document.getElementById("taskTime").value = "";
 
         renderTasks();
-
         updateStats();
-
         renderCalendar();
-
     }
 
 
@@ -1563,48 +1530,29 @@
         const priority =
             document.getElementById("homeTaskPriority").value;
 
-
         if (!name) {
-
             alert("Please enter a task name.");
-
             return;
         }
 
-
         tasks.push({
-
             id: Date.now(),
-
             name: name,
-
             date: date,
-
             time: time,
-
             priority: priority,
-
             completed: false
-
         });
-
 
         saveTasks();
 
-
         document.getElementById("homeTaskName").value = "";
-
         document.getElementById("homeTaskDate").value = "";
-
         document.getElementById("homeTaskTime").value = "";
 
-
         renderTasks();
-
         updateStats();
-
         renderCalendar();
-
     }
 
 
@@ -1620,33 +1568,23 @@
         const homeList =
             document.getElementById("homeTaskList");
 
-
         list.innerHTML = "";
-
         homeList.innerHTML = "";
-
 
         const recentTasks =
             [...tasks].reverse().slice(0, 5);
 
-
         tasks.forEach(task => {
-
             list.appendChild(
                 createTaskElement(task)
             );
-
         });
 
-
         recentTasks.forEach(task => {
-
             homeList.appendChild(
                 createTaskElement(task)
             );
-
         });
-
 
         if (tasks.length === 0) {
 
@@ -1655,9 +1593,7 @@
 
             homeList.innerHTML =
                 "<p>No tasks yet.</p>";
-
         }
-
     }
 
 
@@ -1670,13 +1606,11 @@
             "task" +
             (task.completed ? " completed" : "");
 
-
         let dateText =
             task.date || "No date";
 
         let timeText =
             task.time || "No time";
-
 
         element.innerHTML = `
 
@@ -1719,9 +1653,7 @@
             </div>
         `;
 
-
         return element;
-
     }
 
 
@@ -1733,7 +1665,6 @@
         div.textContent = text;
 
         return div.innerHTML;
-
     }
 
 
@@ -1754,11 +1685,8 @@
         saveTasks();
 
         renderTasks();
-
         updateStats();
-
         renderCalendar();
-
     }
 
 
@@ -1770,11 +1698,8 @@
         saveTasks();
 
         renderTasks();
-
         updateStats();
-
         renderCalendar();
-
     }
 
 
@@ -1785,34 +1710,27 @@
 
         if (!task) return;
 
-
         const newName =
             prompt(
                 "Edit task name:",
                 task.name
             );
 
-
         if (newName === null) {
             return;
         }
-
 
         if (newName.trim() === "") {
             return;
         }
 
-
         task.name =
             newName.trim();
-
 
         saveTasks();
 
         renderTasks();
-
         renderCalendar();
-
     }
 
 
@@ -1823,22 +1741,17 @@
                 "Are you sure you want to delete all tasks?"
             );
 
-
         if (!confirmation) {
             return;
         }
-
 
         tasks = [];
 
         saveTasks();
 
         renderTasks();
-
         updateStats();
-
         renderCalendar();
-
     }
 
 
@@ -1851,48 +1764,39 @@
         const total =
             tasks.length;
 
-
         const completed =
             tasks.filter(
                 task => task.completed
             ).length;
 
-
         const remaining =
             total - completed;
-
 
         const today =
             new Date()
                 .toISOString()
                 .split("T")[0];
 
-
         const todayCount =
             tasks.filter(
                 task => task.date === today
             ).length;
 
-
         document.getElementById(
             "totalTasks"
         ).textContent = total;
-
 
         document.getElementById(
             "completedTasks"
         ).textContent = completed;
 
-
         document.getElementById(
             "remainingTasks"
         ).textContent = remaining;
 
-
         document.getElementById(
             "todayTasks"
         ).textContent = todayCount;
-
     }
 
 
@@ -1913,27 +1817,22 @@
                 "calendarGrid"
             );
 
-
         const title =
             document.getElementById(
                 "calendarTitle"
             );
 
-
         if (!grid || !title) {
             return;
         }
 
-
         grid.innerHTML = "";
-
 
         const year =
             calendarDate.getFullYear();
 
         const month =
             calendarDate.getMonth();
-
 
         const monthName =
             calendarDate.toLocaleString(
@@ -1943,10 +1842,8 @@
                 }
             );
 
-
         title.textContent =
             `${monthName} ${year}`;
-
 
         const days =
             [
@@ -1958,7 +1855,6 @@
                 "Fri",
                 "Sat"
             ];
-
 
         days.forEach(day => {
 
@@ -1972,9 +1868,7 @@
                 day;
 
             grid.appendChild(element);
-
         });
-
 
         const firstDay =
             new Date(
@@ -1983,14 +1877,12 @@
                 1
             ).getDay();
 
-
         const daysInMonth =
             new Date(
                 year,
                 month + 1,
                 0
             ).getDate();
-
 
         for (
             let i = 0;
@@ -2002,15 +1894,12 @@
                 document.createElement("div");
 
             grid.appendChild(empty);
-
         }
-
 
         const today =
             new Date()
                 .toISOString()
                 .split("T")[0];
-
 
         for (
             let day = 1;
@@ -2021,14 +1910,11 @@
             const dateString =
                 `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 
-
             const element =
                 document.createElement("div");
 
-
             element.className =
                 "calendar-day";
-
 
             if (
                 dateString === today
@@ -2037,9 +1923,7 @@
                 element.classList.add(
                     "today"
                 );
-
             }
-
 
             if (
                 dateString === selectedDate
@@ -2048,20 +1932,16 @@
                 element.classList.add(
                     "selected"
                 );
-
             }
-
 
             element.innerHTML =
                 `<div class="calendar-day-number">${day}</div>`;
-
 
             const dateTasks =
                 tasks.filter(
                     task =>
                         task.date === dateString
                 );
-
 
             dateTasks
                 .slice(0, 3)
@@ -2081,9 +1961,7 @@
                     element.appendChild(
                         taskElement
                     );
-
                 });
-
 
             element.onclick =
                 function() {
@@ -2096,23 +1974,17 @@
                     showSelectedDateTasks(
                         dateString
                     );
-
                 };
 
-
             grid.appendChild(element);
-
         }
-
 
         if (selectedDate) {
 
             showSelectedDateTasks(
                 selectedDate
             );
-
         }
-
     }
 
 
@@ -2123,16 +1995,13 @@
                 "selectedDatePanel"
             );
 
-
         const dateTasks =
             tasks.filter(
                 task => task.date === date
             );
 
-
         let html =
             `<strong>${date}</strong>`;
-
 
         if (dateTasks.length === 0) {
 
@@ -2152,14 +2021,10 @@
                         ${task.time ? " - " + task.time : ""}
                     </div>
                 `;
-
             });
-
         }
 
-
         panel.innerHTML = html;
-
     }
 
 
@@ -2170,7 +2035,6 @@
         );
 
         renderCalendar();
-
     }
 
 
@@ -2181,7 +2045,6 @@
         );
 
         renderCalendar();
-
     }
 
 
@@ -2196,12 +2059,10 @@
                 "aiQuestion"
             ).value.trim();
 
-
         const answerBox =
             document.getElementById(
                 "aiAnswer"
             );
-
 
         if (!question) {
 
@@ -2212,9 +2073,7 @@
                 "Please enter a question.";
 
             return;
-
         }
-
 
         answerBox.style.display =
             "block";
@@ -2222,44 +2081,32 @@
         answerBox.textContent =
             "AI Tutor is thinking...";
 
-
         const language =
             localStorage.getItem(
                 "lifeOrganizerLanguage"
             ) || "English";
 
-
         try {
 
-            const response =
-                await fetch(fetch(https://lifeorganizer.onrender.com, {
-                   
-                    
+            const response = await fetch(
+                "https://lifeorganizer.onrender.com/ai-tutor",
+                {
+                    method: "POST",
 
-                        method: "POST",
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
 
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
-
-                        body: JSON.stringify({
-
-                            question:
-                                question,
-
-                            language:
-                                language
-
-                        })
-
-                    }
-                );
-
+                    body: JSON.stringify({
+                        question: question,
+                        language: language
+                    })
+                }
+            );
 
             const data =
                 await response.json();
-
 
             answerBox.textContent =
                 data.answer ||
@@ -2269,11 +2116,14 @@
 
         catch (error) {
 
+            console.error(
+                "AI Tutor error:",
+                error
+            );
+
             answerBox.textContent =
-                "The AI Tutor backend is not running yet. Start your Python server and try again.";
-
+                "The AI Tutor could not connect to the server. Please try again.";
         }
-
     }
 
 
@@ -2295,14 +2145,12 @@
 
         ];
 
-
         selectors.forEach(
             selector => {
 
                 if (!selector) return;
 
                 selector.innerHTML = "";
-
 
                 Object.keys(languages)
                     .forEach(language => {
@@ -2321,12 +2169,9 @@
                         selector.appendChild(
                             option
                         );
-
                     });
-
             }
         );
-
     }
 
 
@@ -2337,17 +2182,14 @@
                 "languageSelect"
             ).value;
 
-
         localStorage.setItem(
             "lifeOrganizerLanguage",
             language
         );
 
-
         applyLanguage(
             language
         );
-
     }
 
 
@@ -2358,22 +2200,18 @@
                 "settingsLanguage"
             ).value;
 
-
         localStorage.setItem(
             "lifeOrganizerLanguage",
             language
         );
 
-
         document.getElementById(
             "languageSelect"
         ).value = language;
 
-
         applyLanguage(
             language
         );
-
     }
 
 
@@ -2382,17 +2220,9 @@
         const dictionary =
             translations[language];
 
-
-        /*
-           If the language does not have a
-           complete UI dictionary yet, use
-           English for the interface.
-        */
-
         const translation =
             dictionary ||
             translations.English;
-
 
         document
             .querySelectorAll(
@@ -2405,18 +2235,14 @@
                         "data-i18n"
                     );
 
-
                 if (
                     translation[key]
                 ) {
 
                     element.textContent =
                         translation[key];
-
                 }
-
             });
-
 
         document
             .querySelectorAll(
@@ -2429,33 +2255,22 @@
                         "data-i18n-placeholder"
                     );
 
-
                 if (
                     translation[key]
                 ) {
 
                     element.placeholder =
                         translation[key];
-
                 }
-
             });
-
 
         document.getElementById(
             "languageSelect"
         ).value = language;
 
-
         document.getElementById(
             "settingsLanguage"
         ).value = language;
-
-
-        /*
-           Arabic and Urdu use right-to-left
-           text direction.
-        */
 
         if (
             language === "Arabic" ||
@@ -2471,9 +2286,7 @@
 
             document.body.dir =
                 "ltr";
-
         }
-
     }
 
 
@@ -2485,24 +2298,20 @@
 
         populateLanguageSelectors();
 
-
         const savedLanguage =
             localStorage.getItem(
                 "lifeOrganizerLanguage"
             ) || "English";
 
-
         applyLanguage(
             savedLanguage
         );
-
 
         renderTasks();
 
         updateStats();
 
         renderCalendar();
-
     }
 
 
