@@ -1,39 +1,13 @@
-name: Deploy Life Organizer
+Commit changes
+There was an error committing your changes: A file with the same name already exists. Please choose a different name and try again.
+Commit message
+Modify GitHub Pages workflow to deploy frontend only
+Copilot commit message generated: Modify GitHub Pages workflow to deploy frontend only
+Extended description
+Updated deployment path to only include frontend directory.
+Message and description suggested by Copilot.
+Direct commit or PR
 
-on:
-  push:
-    branches: ["main"]
-  workflow_dispatch:
+Commit directly to the main branch
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
-jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Get repository
-        uses: actions/checkout@v4
-
-      - name: Set up GitHub Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload Life Organizer frontend
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: "./frontend"
-
-      - name: Publish Life Organizer
-        id: deployment
-        uses: actions/deploy-pages@v4
+Create a new branch for this commit and start a pull request Learn more about pull requests
