@@ -450,7 +450,7 @@
 
             <div>
                 <div class="app-title">Life Organizer</div>
-                <div class="tagline">Plan · Focus · Achieve</div>
+                <div class="tagline" data-i18n="tagline">Plan · Focus · Achieve</div>
             </div>
         </div>
 
@@ -458,37 +458,35 @@
 
             <select id="languageSelector" class="language-select"
                 onchange="changeLanguage(this.value)">
-
                 <option value="English">English</option>
-                <option value="Swedish">Swedish</option>
-                <option value="Spanish">Spanish</option>
-                <option value="French">French</option>
-                <option value="German">German</option>
-                <option value="Arabic">Arabic</option>
-                <option value="Chinese">Chinese</option>
-                <option value="Japanese">Japanese</option>
-                <option value="Korean">Korean</option>
-                <option value="Portuguese">Portuguese</option>
-                <option value="Italian">Italian</option>
-                <option value="Dutch">Dutch</option>
-                <option value="Turkish">Turkish</option>
-                <option value="Russian">Russian</option>
-                <option value="Hindi">Hindi</option>
-                <option value="Bengali">Bengali</option>
-                <option value="Tamil">Tamil</option>
-                <option value="Telugu">Telugu</option>
-                <option value="Marathi">Marathi</option>
-                <option value="Gujarati">Gujarati</option>
-                <option value="Kannada">Kannada</option>
-                <option value="Malayalam">Malayalam</option>
-                <option value="Punjabi">Punjabi</option>
-                <option value="Urdu">Urdu</option>
-
+                <option value="Swedish">Svenska</option>
+                <option value="Spanish">Español</option>
+                <option value="French">Français</option>
+                <option value="German">Deutsch</option>
+                <option value="Arabic">العربية</option>
+                <option value="Chinese">中文</option>
+                <option value="Japanese">日本語</option>
+                <option value="Korean">한국어</option>
+                <option value="Portuguese">Português</option>
+                <option value="Italian">Italiano</option>
+                <option value="Dutch">Nederlands</option>
+                <option value="Turkish">Türkçe</option>
+                <option value="Russian">Русский</option>
+                <option value="Hindi">हिन्दी</option>
+                <option value="Bengali">বাংলা</option>
+                <option value="Tamil">தமிழ்</option>
+                <option value="Telugu">తెలుగు</option>
+                <option value="Marathi">मराठी</option>
+                <option value="Gujarati">ગુજરાતી</option>
+                <option value="Kannada">ಕನ್ನಡ</option>
+                <option value="Malayalam">മലയാളം</option>
+                <option value="Punjabi">ਪੰਜਾਬੀ</option>
+                <option value="Urdu">اردو</option>
             </select>
 
             <button class="premium-button"
                 onclick="showPage('premium')">
-                👑 Premium
+                👑 <span data-i18n="premium">Premium</span>
             </button>
 
             <button class="profile-button"
@@ -508,37 +506,37 @@
             <button class="nav-button active"
                 data-page="home"
                 onclick="showPage('home')">
-                🏠 Home
+                🏠 <span data-i18n="home">Home</span>
             </button>
 
             <button class="nav-button"
                 data-page="tasks"
                 onclick="showPage('tasks')">
-                ✅ My Tasks
+                ✅ <span data-i18n="myTasks">My Tasks</span>
             </button>
 
             <button class="nav-button"
                 data-page="calendar"
                 onclick="showPage('calendar')">
-                📅 Calendar
+                📅 <span data-i18n="calendar">Calendar</span>
             </button>
 
             <button class="nav-button"
                 data-page="ai"
                 onclick="showPage('ai')">
-                🤖 AI Tutor
+                🤖 <span data-i18n="aiTutor">AI Tutor</span>
             </button>
 
             <button class="nav-button premium-nav"
                 data-page="premium"
                 onclick="showPage('premium')">
-                👑 Premium
+                👑 <span data-i18n="premium">Premium</span>
             </button>
 
             <button class="nav-button"
                 data-page="settings"
                 onclick="showPage('settings')">
-                ⚙️ Settings
+                ⚙️ <span data-i18n="settings">Settings</span>
             </button>
 
         </aside>
@@ -562,17 +560,17 @@
                 <div class="stats">
 
                     <div class="stat-card">
-                        <h3>Total Tasks</h3>
+                        <h3 data-i18n="totalTasks">Total Tasks</h3>
                         <div class="stat-number" id="totalTasks">0</div>
                     </div>
 
                     <div class="stat-card">
-                        <h3>Completed</h3>
+                        <h3 data-i18n="completed">Completed</h3>
                         <div class="stat-number" id="completedTasks">0</div>
                     </div>
 
                     <div class="stat-card">
-                        <h3>Pending</h3>
+                        <h3 data-i18n="pending">Pending</h3>
                         <div class="stat-number" id="pendingTasks">0</div>
                     </div>
 
@@ -582,7 +580,7 @@
                 <div class="card">
 
                     <h2 class="section-title">
-                        Add a Task
+                        <span data-i18n="addTaskHeading">Add a Task</span>
                     </h2>
 
                     <div class="task-form">
@@ -590,7 +588,7 @@
                         <input
                             id="homeTaskInput"
                             type="text"
-                            placeholder="Add a new task...">
+                            placeholder="Add a new task..." data-i18n-placeholder="addTaskPlaceholder">
 
                         <input
                             id="homeTaskDate"
@@ -609,7 +607,7 @@
                         <button
                             class="primary-button"
                             onclick="addHomeTask()">
-                            Add Task
+                            <span data-i18n="addTask">Add Task</span>
                         </button>
 
                     </div>
@@ -620,7 +618,7 @@
                 <div class="card">
 
                     <h2 class="section-title">
-                        Today's Tasks
+                        <span data-i18n="todaysTasks">Today\'s Tasks</span>
                     </h2>
 
                     <div id="homeTaskList" class="task-list"></div>
@@ -636,15 +634,15 @@
             <section id="tasks" class="page">
 
                 <div class="welcome">
-                    <h1>My Tasks</h1>
-                    <p>Manage your tasks and deadlines.</p>
+                    <h1 data-i18n="myTasks">My Tasks</h1>
+                    <p data-i18n="manageTasks">Manage your tasks and deadlines.</p>
                 </div>
 
 
                 <div class="card">
 
                     <h2 class="section-title">
-                        Add New Task
+                        <span data-i18n="addNewTask">Add New Task</span>
                     </h2>
 
                     <div class="task-form">
@@ -652,7 +650,7 @@
                         <input
                             id="taskInput"
                             type="text"
-                            placeholder="Task name">
+                            placeholder="Task name" data-i18n-placeholder="taskName">
 
                         <input
                             id="taskDate"
@@ -682,7 +680,7 @@
                             id="addTaskButton"
                             class="primary-button"
                             onclick="addTask()">
-                            Add Task
+                            <span data-i18n="addTask">Add Task</span>
                         </button>
 
                     </div>
@@ -693,7 +691,7 @@
                 <div class="card">
 
                     <h2 class="section-title">
-                        All Tasks
+                        <span data-i18n="allTasks">All Tasks</span>
                     </h2>
 
                     <div id="taskList" class="task-list"></div>
@@ -709,8 +707,8 @@
             <section id="calendar" class="page">
 
                 <div class="welcome">
-                    <h1>Calendar</h1>
-                    <p>See your tasks by date.</p>
+                    <h1 data-i18n="calendar">Calendar</h1>
+                    <p data-i18n="calendarSubtitle">See your tasks by date.</p>
                 </div>
 
                 <div class="card">
@@ -730,9 +728,9 @@
             <section id="ai" class="page">
 
                 <div class="welcome">
-                    <h1>🤖 AI Tutor</h1>
+                    <h1>🤖 <span data-i18n="aiTutor">AI Tutor</span></h1>
                     <p>
-                        Ask questions and get explanations step by step.
+                        <span data-i18n="aiSubtitle">Ask questions and get explanations step by step.</span>
                     </p>
                 </div>
 
@@ -743,7 +741,7 @@
                         id="aiQuestion"
                         class="ai-input"
                         type="text"
-                        placeholder="Ask the AI Tutor something...">
+                        placeholder="Ask the AI Tutor something..." data-i18n-placeholder="aiPlaceholder">
 
                     <br><br>
 
@@ -751,7 +749,7 @@
                         id="askAIButton"
                         class="primary-button"
                         onclick="askAITutor()">
-                        Ask AI Tutor
+                        <span data-i18n="askAI">Ask AI Tutor</span>
                     </button>
 
                     <div
@@ -776,18 +774,17 @@
                     </div>
 
                     <h2>
-                        Life Organizer Premium
+                        <span data-i18n="premiumTitle">Life Organizer Premium</span>
                     </h2>
 
                     <p>
-                        Unlock additional features and get more
-                        from Life Organizer.
+                        <span data-i18n="premiumSubtitle">Unlock additional features and get more from Life Organizer.</span>
                     </p>
 
                     <button
                         class="premium-button"
                         onclick="premiumMessage()">
-                        Upgrade to Premium
+                        <span data-i18n="upgradePremium">Upgrade to Premium</span>
                     </button>
 
                     <p id="premiumMessage"
@@ -805,8 +802,8 @@
             <section id="settings" class="page">
 
                 <div class="welcome">
-                    <h1>Settings</h1>
-                    <p>Manage your Life Organizer settings.</p>
+                    <h1 data-i18n="settings">Settings</h1>
+                    <p data-i18n="settingsSubtitle">Manage your Life Organizer settings.</p>
                 </div>
 
 
@@ -815,10 +812,10 @@
                     <div class="settings-row">
 
                         <div>
-                            <strong>Notifications</strong>
+                            <strong data-i18n="notifications">Notifications</strong>
 
                             <div>
-                                Receive task reminders
+                                <span data-i18n="reminders">Receive task reminders</span>
                             </div>
                         </div>
 
@@ -831,37 +828,40 @@
                     <div class="settings-row">
 
                         <div>
-                            <strong>Language</strong>
+                            <strong data-i18n="language">Language</strong>
 
                             <div>
-                                Choose your app language
+                                <span data-i18n="chooseLanguage">Choose your app language</span>
                             </div>
                         </div>
 
                         <select
                             id="settingsLanguage"
                             onchange="changeLanguage(this.value)">
-
-                            <option value="English">
-                                English
-                            </option>
-
-                            <option value="Swedish">
-                                Swedish
-                            </option>
-
-                            <option value="Spanish">
-                                Spanish
-                            </option>
-
-                            <option value="French">
-                                French
-                            </option>
-
-                            <option value="German">
-                                German
-                            </option>
-
+                            <option value="English">English</option>
+                            <option value="Swedish">Svenska</option>
+                            <option value="Spanish">Español</option>
+                            <option value="French">Français</option>
+                            <option value="German">Deutsch</option>
+                            <option value="Arabic">العربية</option>
+                            <option value="Chinese">中文</option>
+                            <option value="Japanese">日本語</option>
+                            <option value="Korean">한국어</option>
+                            <option value="Portuguese">Português</option>
+                            <option value="Italian">Italiano</option>
+                            <option value="Dutch">Nederlands</option>
+                            <option value="Turkish">Türkçe</option>
+                            <option value="Russian">Русский</option>
+                            <option value="Hindi">हिन्दी</option>
+                            <option value="Bengali">বাংলা</option>
+                            <option value="Tamil">தமிழ்</option>
+                            <option value="Telugu">తెలుగు</option>
+                            <option value="Marathi">मराठी</option>
+                            <option value="Gujarati">ગુજરાતી</option>
+                            <option value="Kannada">ಕನ್ನಡ</option>
+                            <option value="Malayalam">മലയാളം</option>
+                            <option value="Punjabi">ਪੰਜਾਬੀ</option>
+                            <option value="Urdu">اردو</option>
                         </select>
 
                     </div>
@@ -974,7 +974,7 @@
 
 
             if (!name) {
-                alert("Please enter a task.");
+                alert(currentTranslation().enterTask);
                 return;
             }
 
@@ -1052,7 +1052,7 @@
 
 
             if (!name) {
-                alert("Please enter a task.");
+                alert(currentTranslation().enterTask);
                 return;
             }
 
@@ -1121,10 +1121,10 @@
             if (tasks.length === 0) {
 
                 taskList.innerHTML =
-                    '<div class="empty-message">No tasks yet.</div>';
+                    '<div class="empty-message">' + currentTranslation().noTasks + '</div>';
 
                 homeTaskList.innerHTML =
-                    '<div class="empty-message">No tasks yet.</div>';
+                    '<div class="empty-message">' + currentTranslation().noTasks + '</div>';
 
                 return;
             }
@@ -1216,11 +1216,12 @@
             meta.className =
                 "task-meta";
 
+            const t = currentTranslation();
             meta.textContent =
-                "Deadline: " +
-                (task.date || "No date") +
-                " | Time: " +
-                (task.time || "No time");
+                t.deadline + ": " +
+                (task.date || t.noDate) +
+                " | " + t.time + ": " +
+                (task.time || t.noTime);
 
 
             info.appendChild(name);
@@ -1236,7 +1237,9 @@
                 task.priority;
 
             priority.textContent =
-                task.priority;
+                task.priority === "Low" ? currentTranslation().low :
+                task.priority === "Medium" ? currentTranslation().medium :
+                currentTranslation().high;
 
 
             const deleteButton =
@@ -1412,7 +1415,7 @@
 
                 heading.textContent =
                     date.toLocaleDateString(
-                        undefined,
+                        document.documentElement.lang || undefined,
                         {
                             weekday: "short",
                             month: "short",
@@ -1456,151 +1459,159 @@
 
 
         // ================================
-        // LANGUAGE
+        // WHOLE-APP LANGUAGE SYSTEM
         // ================================
 
-        const translations = {
-
-            English: {
-
-                welcome:
-                    "Welcome to Life Organizer 👋",
-
-                subtitle:
-                    "Organize your tasks, schedule and learning in one place."
-
-            },
-
-            Swedish: {
-
-                welcome:
-                    "Välkommen till Life Organizer 👋",
-
-                subtitle:
-                    "Organisera dina uppgifter, ditt schema och ditt lärande på ett ställe."
-
-            },
-
-            Spanish: {
-
-                welcome:
-                    "Bienvenido a Life Organizer 👋",
-
-                subtitle:
-                    "Organiza tus tareas, horarios y aprendizaje en un solo lugar."
-
-            },
-
-            French: {
-
-                welcome:
-                    "Bienvenue sur Life Organizer 👋",
-
-                subtitle:
-                    "Organisez vos tâches, votre emploi du temps et votre apprentissage au même endroit."
-
-            },
-
-            German: {
-
-                welcome:
-                    "Willkommen bei Life Organizer 👋",
-
-                subtitle:
-                    "Organisiere deine Aufgaben, deinen Zeitplan und dein Lernen an einem Ort."
-
-            },
-
-            Hindi: {
-
-                welcome:
-                    "Life Organizer में आपका स्वागत है 👋",
-
-                subtitle:
-                    "अपने कार्यों, समय-सारणी और सीखने को एक जगह व्यवस्थित करें।"
-
-            },
-
-            Bengali: {
-
-                welcome:
-                    "Life Organizer-এ স্বাগতম 👋",
-
-                subtitle:
-                    "আপনার কাজ, সময়সূচি এবং শেখার বিষয়গুলো এক জায়গায় সংগঠিত করুন।"
-
-            },
-
-            Tamil: {
-
-                welcome:
-                    "Life Organizer-க்கு வரவேற்கிறோம் 👋",
-
-                subtitle:
-                    "உங்கள் பணிகள், அட்டவணை மற்றும் கற்றலை ஒரே இடத்தில் ஒழுங்குபடுத்துங்கள்."
-
-            },
-
-            Telugu: {
-
-                welcome:
-                    "Life Organizer కు స్వాగతం 👋",
-
-                subtitle:
-                    "మీ పనులు, షెడ్యూల్ మరియు నేర్చుకునే విషయాలను ఒకే చోట నిర్వహించండి."
-
-            },
-
-            Marathi: {
-
-                welcome:
-                    "Life Organizer मध्ये आपले स्वागत आहे 👋",
-
-                subtitle:
-                    "तुमची कामे, वेळापत्रक आणि शिक्षण एका ठिकाणी व्यवस्थित करा."
-
-            }
-
+        const baseEnglish = {
+            tagline: "Plan · Focus · Achieve",
+            premium: "Premium",
+            home: "Home",
+            myTasks: "My Tasks",
+            calendar: "Calendar",
+            aiTutor: "AI Tutor",
+            settings: "Settings",
+            welcome: "Welcome to Life Organizer 👋",
+            subtitle: "Organize your tasks, schedule and learning in one place.",
+            totalTasks: "Total Tasks",
+            completed: "Completed",
+            pending: "Pending",
+            addTaskHeading: "Add a Task",
+            addTaskPlaceholder: "Add a new task...",
+            addTask: "Add Task",
+            todaysTasks: "Today's Tasks",
+            manageTasks: "Manage your tasks and deadlines.",
+            addNewTask: "Add New Task",
+            taskName: "Task name",
+            allTasks: "All Tasks",
+            calendarSubtitle: "See your tasks by date.",
+            aiSubtitle: "Ask questions and get explanations step by step.",
+            aiPlaceholder: "Ask the AI Tutor something...",
+            askAI: "Ask AI Tutor",
+            premiumTitle: "Life Organizer Premium",
+            premiumSubtitle: "Unlock additional features and get more from Life Organizer.",
+            upgradePremium: "Upgrade to Premium",
+            settingsSubtitle: "Manage your Life Organizer settings.",
+            notifications: "Notifications",
+            reminders: "Receive task reminders",
+            language: "Language",
+            chooseLanguage: "Choose your app language",
+            low: "Low", medium: "Medium", high: "High",
+            deadline: "Deadline", noDate: "No date", time: "Time", noTime: "No time",
+            noTasks: "No tasks yet.",
+            enterTask: "Please enter a task.",
+            enterQuestion: currentTranslation().enterQuestion,
+            thinking: currentTranslation().thinking,
+            noAnswer: "No answer received.",
+            aiError: currentTranslation().aiError,
+            premiumSoon: currentTranslation().premiumSoon
         };
 
+        const translations = {
+            English: {},
+            Swedish: {
+                tagline:"Planera · Fokusera · Uppnå", premium:"Premium", home:"Hem", myTasks:"Mina uppgifter", calendar:"Kalender", aiTutor:"AI-handledare", settings:"Inställningar",
+                welcome:"Välkommen till Life Organizer 👋", subtitle:"Organisera dina uppgifter, ditt schema och ditt lärande på ett ställe.", totalTasks:"Totalt antal uppgifter", completed:"Klara", pending:"Väntande",
+                addTaskHeading:"Lägg till en uppgift", addTaskPlaceholder:"Lägg till en ny uppgift...", addTask:"Lägg till uppgift", todaysTasks:"Dagens uppgifter", manageTasks:"Hantera dina uppgifter och deadlines.",
+                addNewTask:"Lägg till ny uppgift", taskName:"Uppgiftens namn", allTasks:"Alla uppgifter", calendarSubtitle:"Se dina uppgifter efter datum.", aiSubtitle:"Ställ frågor och få förklaringar steg för steg.",
+                aiPlaceholder:"Fråga AI-handledaren något...", askAI:"Fråga AI-handledaren", premiumTitle:"Life Organizer Premium", premiumSubtitle:"Lås upp fler funktioner och få ut mer av Life Organizer.",
+                upgradePremium:"Uppgradera till Premium", settingsSubtitle:"Hantera dina Life Organizer-inställningar.", notifications:"Aviseringar", reminders:"Få påminnelser om uppgifter", language:"Språk", chooseLanguage:"Välj appens språk",
+                low:"Låg", medium:"Medel", high:"Hög", deadline:"Deadline", noDate:"Inget datum", time:"Tid", noTime:"Ingen tid", noTasks:"Inga uppgifter ännu.", enterTask:"Ange en uppgift.",
+                enterQuestion:"Skriv en fråga.", thinking:"AI-handledaren tänker...", noAnswer:"Inget svar mottogs.", aiError:"AI-handledaren kunde inte ansluta just nu. Försök igen.", premiumSoon:"Premiumfunktioner kommer snart."
+            },
+            Spanish: {
+                tagline:"Planifica · Concéntrate · Logra", home:"Inicio", myTasks:"Mis tareas", calendar:"Calendario", aiTutor:"Tutor de IA", settings:"Configuración", welcome:"Bienvenido a Life Organizer 👋",
+                subtitle:"Organiza tus tareas, horario y aprendizaje en un solo lugar.", totalTasks:"Tareas totales", completed:"Completadas", pending:"Pendientes", addTaskHeading:"Añadir una tarea", addTaskPlaceholder:"Añadir una nueva tarea...",
+                addTask:"Añadir tarea", todaysTasks:"Tareas de hoy", manageTasks:"Gestiona tus tareas y fechas límite.", addNewTask:"Añadir nueva tarea", taskName:"Nombre de la tarea", allTasks:"Todas las tareas",
+                calendarSubtitle:"Consulta tus tareas por fecha.", aiSubtitle:"Haz preguntas y recibe explicaciones paso a paso.", aiPlaceholder:"Pregunta algo al Tutor de IA...", askAI:"Preguntar al Tutor de IA",
+                premiumTitle:"Life Organizer Premium", premiumSubtitle:"Desbloquea funciones adicionales y aprovecha más Life Organizer.", upgradePremium:"Mejorar a Premium", settingsSubtitle:"Administra la configuración de Life Organizer.",
+                notifications:"Notificaciones", reminders:"Recibir recordatorios de tareas", language:"Idioma", chooseLanguage:"Elige el idioma de la aplicación", low:"Baja", medium:"Media", high:"Alta", deadline:"Fecha límite", noDate:"Sin fecha",
+                time:"Hora", noTime:"Sin hora", noTasks:"Aún no hay tareas.", enterTask:"Introduce una tarea.", enterQuestion:"Introduce una pregunta.", thinking:"El Tutor de IA está pensando...", noAnswer:"No se recibió respuesta.",
+                aiError:"El Tutor de IA no pudo conectarse. Inténtalo de nuevo.", premiumSoon:"Las funciones Premium estarán disponibles pronto."
+            },
+            French: {
+                tagline:"Planifier · Se concentrer · Réussir", home:"Accueil", myTasks:"Mes tâches", calendar:"Calendrier", aiTutor:"Tuteur IA", settings:"Paramètres", welcome:"Bienvenue sur Life Organizer 👋",
+                subtitle:"Organisez vos tâches, votre emploi du temps et votre apprentissage au même endroit.", totalTasks:"Total des tâches", completed:"Terminées", pending:"En attente", addTaskHeading:"Ajouter une tâche",
+                addTaskPlaceholder:"Ajouter une nouvelle tâche...", addTask:"Ajouter", todaysTasks:"Tâches d’aujourd’hui", manageTasks:"Gérez vos tâches et vos échéances.", addNewTask:"Ajouter une nouvelle tâche", taskName:"Nom de la tâche",
+                allTasks:"Toutes les tâches", calendarSubtitle:"Consultez vos tâches par date.", aiSubtitle:"Posez des questions et obtenez des explications étape par étape.", aiPlaceholder:"Posez une question au Tuteur IA...", askAI:"Demander au Tuteur IA",
+                premiumTitle:"Life Organizer Premium", premiumSubtitle:"Débloquez des fonctionnalités supplémentaires et profitez davantage de Life Organizer.", upgradePremium:"Passer à Premium", settingsSubtitle:"Gérez vos paramètres Life Organizer.",
+                notifications:"Notifications", reminders:"Recevoir des rappels de tâches", language:"Langue", chooseLanguage:"Choisissez la langue de l’application", low:"Faible", medium:"Moyenne", high:"Élevée", deadline:"Échéance", noDate:"Aucune date",
+                time:"Heure", noTime:"Aucune heure", noTasks:"Aucune tâche pour le moment.", enterTask:"Veuillez saisir une tâche.", enterQuestion:"Veuillez saisir une question.", thinking:"Le Tuteur IA réfléchit...", noAnswer:"Aucune réponse reçue.",
+                aiError:"Le Tuteur IA ne peut pas se connecter pour le moment. Réessayez.", premiumSoon:"Les fonctionnalités Premium seront bientôt disponibles."
+            },
+            German: {
+                tagline:"Planen · Fokussieren · Erreichen", home:"Start", myTasks:"Meine Aufgaben", calendar:"Kalender", aiTutor:"KI-Tutor", settings:"Einstellungen", welcome:"Willkommen bei Life Organizer 👋",
+                subtitle:"Organisiere Aufgaben, Zeitplan und Lernen an einem Ort.", totalTasks:"Aufgaben gesamt", completed:"Erledigt", pending:"Offen", addTaskHeading:"Aufgabe hinzufügen", addTaskPlaceholder:"Neue Aufgabe hinzufügen...",
+                addTask:"Aufgabe hinzufügen", todaysTasks:"Heutige Aufgaben", manageTasks:"Verwalte deine Aufgaben und Fristen.", addNewTask:"Neue Aufgabe hinzufügen", taskName:"Aufgabenname", allTasks:"Alle Aufgaben",
+                calendarSubtitle:"Sieh deine Aufgaben nach Datum.", aiSubtitle:"Stelle Fragen und erhalte Erklärungen Schritt für Schritt.", aiPlaceholder:"Frage den KI-Tutor etwas...", askAI:"KI-Tutor fragen", premiumTitle:"Life Organizer Premium",
+                premiumSubtitle:"Schalte zusätzliche Funktionen frei und hole mehr aus Life Organizer heraus.", upgradePremium:"Auf Premium upgraden", settingsSubtitle:"Verwalte deine Life Organizer-Einstellungen.", notifications:"Benachrichtigungen",
+                reminders:"Aufgabenerinnerungen erhalten", language:"Sprache", chooseLanguage:"App-Sprache auswählen", low:"Niedrig", medium:"Mittel", high:"Hoch", deadline:"Frist", noDate:"Kein Datum", time:"Zeit", noTime:"Keine Zeit",
+                noTasks:"Noch keine Aufgaben.", enterTask:"Bitte gib eine Aufgabe ein.", enterQuestion:"Bitte gib eine Frage ein.", thinking:"Der KI-Tutor denkt nach...", noAnswer:"Keine Antwort erhalten.", aiError:"Der KI-Tutor konnte gerade keine Verbindung herstellen. Bitte versuche es erneut.",
+                premiumSoon:"Premium-Funktionen sind bald verfügbar."
+            },
+            Arabic: {tagline:"خطط · ركز · أنجز",home:"الرئيسية",myTasks:"مهامي",calendar:"التقويم",aiTutor:"مدرس الذكاء الاصطناعي",settings:"الإعدادات",welcome:"مرحبًا بك في Life Organizer 👋",subtitle:"نظّم مهامك وجدولك وتعلّمك في مكان واحد.",totalTasks:"إجمالي المهام",completed:"مكتملة",pending:"قيد الانتظار",addTaskHeading:"إضافة مهمة",addTaskPlaceholder:"أضف مهمة جديدة...",addTask:"إضافة مهمة",todaysTasks:"مهام اليوم",manageTasks:"أدر مهامك ومواعيدك النهائية.",addNewTask:"إضافة مهمة جديدة",taskName:"اسم المهمة",allTasks:"كل المهام",calendarSubtitle:"شاهد مهامك حسب التاريخ.",aiSubtitle:"اطرح الأسئلة واحصل على شرح خطوة بخطوة.",aiPlaceholder:"اسأل مدرس الذكاء الاصطناعي...",askAI:"اسأل المدرس",premiumTitle:"Life Organizer Premium",premiumSubtitle:"افتح ميزات إضافية واستفد أكثر من Life Organizer.",upgradePremium:"الترقية إلى Premium",settingsSubtitle:"إدارة إعدادات Life Organizer.",notifications:"الإشعارات",reminders:"تلقي تذكيرات بالمهام",language:"اللغة",chooseLanguage:"اختر لغة التطبيق",low:"منخفض",medium:"متوسط",high:"مرتفع",deadline:"الموعد النهائي",noDate:"بدون تاريخ",time:"الوقت",noTime:"بدون وقت",noTasks:"لا توجد مهام بعد.",enterTask:"يرجى إدخال مهمة.",enterQuestion:"يرجى إدخال سؤال.",thinking:"مدرس الذكاء الاصطناعي يفكر...",noAnswer:"لم يتم استلام إجابة.",aiError:"تعذر الاتصال بمدرس الذكاء الاصطناعي الآن. حاول مرة أخرى.",premiumSoon:"ميزات Premium ستتوفر قريبًا."},
+            Chinese: {tagline:"计划 · 专注 · 实现",home:"首页",myTasks:"我的任务",calendar:"日历",aiTutor:"AI 导师",settings:"设置",welcome:"欢迎使用 Life Organizer 👋",subtitle:"在一个地方管理任务、日程和学习。",totalTasks:"任务总数",completed:"已完成",pending:"待完成",addTaskHeading:"添加任务",addTaskPlaceholder:"添加新任务...",addTask:"添加任务",todaysTasks:"今日任务",manageTasks:"管理你的任务和截止日期。",addNewTask:"添加新任务",taskName:"任务名称",allTasks:"所有任务",calendarSubtitle:"按日期查看任务。",aiSubtitle:"提出问题并获得逐步讲解。",aiPlaceholder:"向 AI 导师提问...",askAI:"询问 AI 导师",premiumTitle:"Life Organizer Premium",premiumSubtitle:"解锁更多功能，更充分地使用 Life Organizer。",upgradePremium:"升级到 Premium",settingsSubtitle:"管理 Life Organizer 设置。",notifications:"通知",reminders:"接收任务提醒",language:"语言",chooseLanguage:"选择应用语言",low:"低",medium:"中",high:"高",deadline:"截止日期",noDate:"无日期",time:"时间",noTime:"无时间",noTasks:"还没有任务。",enterTask:"请输入任务。",enterQuestion:"请输入问题。",thinking:"AI 导师正在思考...",noAnswer:"未收到回答。",aiError:"AI 导师目前无法连接，请重试。",premiumSoon:"Premium 功能即将推出。"},
+            Japanese: {tagline:"計画 · 集中 · 達成",home:"ホーム",myTasks:"マイタスク",calendar:"カレンダー",aiTutor:"AIチューター",settings:"設定",welcome:"Life Organizerへようこそ 👋",subtitle:"タスク、予定、学習を1か所で整理できます。",totalTasks:"全タスク",completed:"完了",pending:"未完了",addTaskHeading:"タスクを追加",addTaskPlaceholder:"新しいタスクを追加...",addTask:"追加",todaysTasks:"今日のタスク",manageTasks:"タスクと期限を管理します。",addNewTask:"新しいタスクを追加",taskName:"タスク名",allTasks:"すべてのタスク",calendarSubtitle:"日付ごとにタスクを確認します。",aiSubtitle:"質問して、ステップごとの説明を受けられます。",aiPlaceholder:"AIチューターに質問...",askAI:"AIチューターに聞く",premiumTitle:"Life Organizer Premium",premiumSubtitle:"追加機能を利用してLife Organizerをさらに活用しましょう。",upgradePremium:"Premiumにアップグレード",settingsSubtitle:"Life Organizerの設定を管理します。",notifications:"通知",reminders:"タスクのリマインダーを受け取る",language:"言語",chooseLanguage:"アプリの言語を選択",low:"低",medium:"中",high:"高",deadline:"期限",noDate:"日付なし",time:"時刻",noTime:"時刻なし",noTasks:"タスクはまだありません。",enterTask:"タスクを入力してください。",enterQuestion:"質問を入力してください。",thinking:"AIチューターが考えています...",noAnswer:"回答がありません。",aiError:"AIチューターに接続できませんでした。もう一度お試しください。",premiumSoon:"Premium機能は近日公開予定です。"},
+            Korean: {tagline:"계획 · 집중 · 달성",home:"홈",myTasks:"내 할 일",calendar:"캘린더",aiTutor:"AI 튜터",settings:"설정",welcome:"Life Organizer에 오신 것을 환영합니다 👋",subtitle:"할 일, 일정, 학습을 한곳에서 관리하세요.",totalTasks:"전체 할 일",completed:"완료",pending:"대기 중",addTaskHeading:"할 일 추가",addTaskPlaceholder:"새 할 일 추가...",addTask:"추가",todaysTasks:"오늘의 할 일",manageTasks:"할 일과 마감일을 관리하세요.",addNewTask:"새 할 일 추가",taskName:"할 일 이름",allTasks:"모든 할 일",calendarSubtitle:"날짜별 할 일을 확인하세요.",aiSubtitle:"질문하고 단계별 설명을 받아보세요.",aiPlaceholder:"AI 튜터에게 질문하세요...",askAI:"AI 튜터에게 묻기",premiumTitle:"Life Organizer Premium",premiumSubtitle:"추가 기능을 잠금 해제하고 Life Organizer를 더 활용하세요.",upgradePremium:"Premium으로 업그레이드",settingsSubtitle:"Life Organizer 설정을 관리하세요.",notifications:"알림",reminders:"할 일 알림 받기",language:"언어",chooseLanguage:"앱 언어 선택",low:"낮음",medium:"중간",high:"높음",deadline:"마감일",noDate:"날짜 없음",time:"시간",noTime:"시간 없음",noTasks:"아직 할 일이 없습니다.",enterTask:"할 일을 입력하세요.",enterQuestion:"질문을 입력하세요.",thinking:"AI 튜터가 생각 중입니다...",noAnswer:"응답이 없습니다.",aiError:"AI 튜터에 연결할 수 없습니다. 다시 시도하세요.",premiumSoon:"Premium 기능은 곧 제공됩니다."},
+            Portuguese: {home:"Início",myTasks:"Minhas tarefas",calendar:"Calendário",aiTutor:"Tutor de IA",settings:"Configurações",welcome:"Bem-vindo ao Life Organizer 👋",subtitle:"Organize tarefas, agenda e estudos em um só lugar.",totalTasks:"Total de tarefas",completed:"Concluídas",pending:"Pendentes",addTaskHeading:"Adicionar tarefa",addTaskPlaceholder:"Adicionar nova tarefa...",addTask:"Adicionar tarefa",todaysTasks:"Tarefas de hoje",manageTasks:"Gerencie suas tarefas e prazos.",addNewTask:"Adicionar nova tarefa",taskName:"Nome da tarefa",allTasks:"Todas as tarefas",calendarSubtitle:"Veja suas tarefas por data.",aiSubtitle:"Faça perguntas e receba explicações passo a passo.",aiPlaceholder:"Pergunte algo ao Tutor de IA...",askAI:"Perguntar ao Tutor de IA",premiumTitle:"Life Organizer Premium",premiumSubtitle:"Desbloqueie recursos adicionais e aproveite mais o Life Organizer.",upgradePremium:"Atualizar para Premium",settingsSubtitle:"Gerencie as configurações do Life Organizer.",notifications:"Notificações",reminders:"Receber lembretes de tarefas",language:"Idioma",chooseLanguage:"Escolha o idioma do aplicativo",low:"Baixa",medium:"Média",high:"Alta",deadline:"Prazo",noDate:"Sem data",time:"Hora",noTime:"Sem hora",noTasks:"Ainda não há tarefas.",enterTask:"Digite uma tarefa.",enterQuestion:"Digite uma pergunta.",thinking:"O Tutor de IA está pensando...",noAnswer:"Nenhuma resposta recebida.",aiError:"Não foi possível conectar ao Tutor de IA. Tente novamente.",premiumSoon:"Os recursos Premium estarão disponíveis em breve."},
+            Italian: {home:"Home",myTasks:"Le mie attività",calendar:"Calendario",aiTutor:"Tutor IA",settings:"Impostazioni",welcome:"Benvenuto in Life Organizer 👋",subtitle:"Organizza attività, programma e apprendimento in un unico posto.",totalTasks:"Attività totali",completed:"Completate",pending:"In sospeso",addTaskHeading:"Aggiungi attività",addTaskPlaceholder:"Aggiungi una nuova attività...",addTask:"Aggiungi",todaysTasks:"Attività di oggi",manageTasks:"Gestisci attività e scadenze.",addNewTask:"Aggiungi nuova attività",taskName:"Nome attività",allTasks:"Tutte le attività",calendarSubtitle:"Visualizza le attività per data.",aiSubtitle:"Fai domande e ricevi spiegazioni passo dopo passo.",aiPlaceholder:"Chiedi qualcosa al Tutor IA...",askAI:"Chiedi al Tutor IA",premiumTitle:"Life Organizer Premium",premiumSubtitle:"Sblocca funzionalità aggiuntive e ottieni di più da Life Organizer.",upgradePremium:"Passa a Premium",settingsSubtitle:"Gestisci le impostazioni di Life Organizer.",notifications:"Notifiche",reminders:"Ricevi promemoria attività",language:"Lingua",chooseLanguage:"Scegli la lingua dell'app",low:"Bassa",medium:"Media",high:"Alta",deadline:"Scadenza",noDate:"Nessuna data",time:"Ora",noTime:"Nessuna ora",noTasks:"Nessuna attività.",enterTask:"Inserisci un'attività.",enterQuestion:"Inserisci una domanda.",thinking:"Il Tutor IA sta pensando...",noAnswer:"Nessuna risposta ricevuta.",aiError:"Il Tutor IA non riesce a connettersi. Riprova.",premiumSoon:"Le funzionalità Premium saranno disponibili presto."},
+            Dutch: {home:"Home",myTasks:"Mijn taken",calendar:"Kalender",aiTutor:"AI-tutor",settings:"Instellingen",welcome:"Welkom bij Life Organizer 👋",subtitle:"Organiseer taken, planning en leren op één plek.",totalTasks:"Totaal taken",completed:"Voltooid",pending:"Openstaand",addTaskHeading:"Taak toevoegen",addTaskPlaceholder:"Nieuwe taak toevoegen...",addTask:"Taak toevoegen",todaysTasks:"Taken van vandaag",manageTasks:"Beheer je taken en deadlines.",addNewTask:"Nieuwe taak toevoegen",taskName:"Taaknaam",allTasks:"Alle taken",calendarSubtitle:"Bekijk je taken per datum.",aiSubtitle:"Stel vragen en krijg stap-voor-stap uitleg.",aiPlaceholder:"Vraag de AI-tutor iets...",askAI:"Vraag AI-tutor",premiumTitle:"Life Organizer Premium",premiumSubtitle:"Ontgrendel extra functies en haal meer uit Life Organizer.",upgradePremium:"Upgraden naar Premium",settingsSubtitle:"Beheer je Life Organizer-instellingen.",notifications:"Meldingen",reminders:"Taakherinneringen ontvangen",language:"Taal",chooseLanguage:"Kies de taal van de app",low:"Laag",medium:"Gemiddeld",high:"Hoog",deadline:"Deadline",noDate:"Geen datum",time:"Tijd",noTime:"Geen tijd",noTasks:"Nog geen taken.",enterTask:"Voer een taak in.",enterQuestion:"Voer een vraag in.",thinking:"De AI-tutor denkt na...",noAnswer:"Geen antwoord ontvangen.",aiError:"De AI-tutor kon niet verbinden. Probeer opnieuw.",premiumSoon:"Premiumfuncties zijn binnenkort beschikbaar."},
+            Turkish: {home:"Ana Sayfa",myTasks:"Görevlerim",calendar:"Takvim",aiTutor:"Yapay Zekâ Öğretmeni",settings:"Ayarlar",welcome:"Life Organizer'a hoş geldiniz 👋",subtitle:"Görevlerinizi, programınızı ve öğrenmenizi tek yerde düzenleyin.",totalTasks:"Toplam görev",completed:"Tamamlandı",pending:"Bekliyor",addTaskHeading:"Görev ekle",addTaskPlaceholder:"Yeni görev ekle...",addTask:"Görev ekle",todaysTasks:"Bugünün görevleri",manageTasks:"Görevlerinizi ve son tarihleri yönetin.",addNewTask:"Yeni görev ekle",taskName:"Görev adı",allTasks:"Tüm görevler",calendarSubtitle:"Görevlerinizi tarihe göre görün.",aiSubtitle:"Sorular sorun ve adım adım açıklamalar alın.",aiPlaceholder:"Yapay Zekâ Öğretmenine sorun...",askAI:"Yapay Zekâ Öğretmenine sor",premiumTitle:"Life Organizer Premium",premiumSubtitle:"Ek özelliklerin kilidini açın ve Life Organizer'dan daha fazlasını alın.",upgradePremium:"Premium'a yükselt",settingsSubtitle:"Life Organizer ayarlarınızı yönetin.",notifications:"Bildirimler",reminders:"Görev hatırlatıcıları al",language:"Dil",chooseLanguage:"Uygulama dilini seç",low:"Düşük",medium:"Orta",high:"Yüksek",deadline:"Son tarih",noDate:"Tarih yok",time:"Saat",noTime:"Saat yok",noTasks:"Henüz görev yok.",enterTask:"Lütfen bir görev girin.",enterQuestion:"Lütfen bir soru girin.",thinking:"Yapay Zekâ Öğretmeni düşünüyor...",noAnswer:"Yanıt alınamadı.",aiError:"Yapay Zekâ Öğretmenine bağlanılamadı. Tekrar deneyin.",premiumSoon:"Premium özellikler yakında."},
+            Russian: {home:"Главная",myTasks:"Мои задачи",calendar:"Календарь",aiTutor:"ИИ-репетитор",settings:"Настройки",welcome:"Добро пожаловать в Life Organizer 👋",subtitle:"Организуйте задачи, расписание и обучение в одном месте.",totalTasks:"Всего задач",completed:"Выполнено",pending:"Ожидают",addTaskHeading:"Добавить задачу",addTaskPlaceholder:"Добавить новую задачу...",addTask:"Добавить",todaysTasks:"Задачи на сегодня",manageTasks:"Управляйте задачами и сроками.",addNewTask:"Добавить новую задачу",taskName:"Название задачи",allTasks:"Все задачи",calendarSubtitle:"Просматривайте задачи по датам.",aiSubtitle:"Задавайте вопросы и получайте пошаговые объяснения.",aiPlaceholder:"Спросите ИИ-репетитора...",askAI:"Спросить ИИ-репетитора",premiumTitle:"Life Organizer Premium",premiumSubtitle:"Откройте дополнительные функции Life Organizer.",upgradePremium:"Перейти на Premium",settingsSubtitle:"Управляйте настройками Life Organizer.",notifications:"Уведомления",reminders:"Получать напоминания о задачах",language:"Язык",chooseLanguage:"Выберите язык приложения",low:"Низкий",medium:"Средний",high:"Высокий",deadline:"Срок",noDate:"Нет даты",time:"Время",noTime:"Нет времени",noTasks:"Задач пока нет.",enterTask:"Введите задачу.",enterQuestion:"Введите вопрос.",thinking:"ИИ-репетитор думает...",noAnswer:"Ответ не получен.",aiError:"Не удалось подключиться к ИИ-репетитору. Попробуйте снова.",premiumSoon:"Функции Premium скоро появятся."},
+            Hindi: {tagline:"योजना · ध्यान · उपलब्धि",home:"होम",myTasks:"मेरे कार्य",calendar:"कैलेंडर",aiTutor:"AI ट्यूटर",settings:"सेटिंग्स",welcome:"Life Organizer में आपका स्वागत है 👋",subtitle:"अपने कार्य, समय-सारणी और पढ़ाई को एक जगह व्यवस्थित करें।",totalTasks:"कुल कार्य",completed:"पूरे हुए",pending:"बाकी",addTaskHeading:"कार्य जोड़ें",addTaskPlaceholder:"नया कार्य जोड़ें...",addTask:"कार्य जोड़ें",todaysTasks:"आज के कार्य",manageTasks:"अपने कार्य और समय-सीमाएँ प्रबंधित करें।",addNewTask:"नया कार्य जोड़ें",taskName:"कार्य का नाम",allTasks:"सभी कार्य",calendarSubtitle:"तारीख के अनुसार कार्य देखें।",aiSubtitle:"सवाल पूछें और चरण-दर-चरण समझाएँ पाएँ।",aiPlaceholder:"AI ट्यूटर से कुछ पूछें...",askAI:"AI ट्यूटर से पूछें",premiumTitle:"Life Organizer Premium",premiumSubtitle:"अतिरिक्त सुविधाएँ खोलें और Life Organizer का अधिक लाभ लें।",upgradePremium:"Premium में अपग्रेड करें",settingsSubtitle:"Life Organizer की सेटिंग्स प्रबंधित करें।",notifications:"सूचनाएँ",reminders:"कार्य रिमाइंडर प्राप्त करें",language:"भाषा",chooseLanguage:"ऐप की भाषा चुनें",low:"कम",medium:"मध्यम",high:"उच्च",deadline:"समय-सीमा",noDate:"कोई तारीख नहीं",time:"समय",noTime:"कोई समय नहीं",noTasks:"अभी कोई कार्य नहीं है।",enterTask:"कृपया कार्य लिखें।",enterQuestion:"कृपया सवाल लिखें।",thinking:"AI ट्यूटर सोच रहा है...",noAnswer:"कोई उत्तर नहीं मिला।",aiError:"AI ट्यूटर अभी कनेक्ट नहीं हो सका। फिर कोशिश करें।",premiumSoon:"Premium सुविधाएँ जल्द उपलब्ध होंगी।"},
+            Bengali: {home:"হোম",myTasks:"আমার কাজ",calendar:"ক্যালেন্ডার",aiTutor:"AI টিউটর",settings:"সেটিংস",welcome:"Life Organizer-এ স্বাগতম 👋",subtitle:"আপনার কাজ, সময়সূচি ও শেখা এক জায়গায় সাজান।",totalTasks:"মোট কাজ",completed:"সম্পন্ন",pending:"বাকি",addTaskHeading:"কাজ যোগ করুন",addTaskPlaceholder:"নতুন কাজ যোগ করুন...",addTask:"কাজ যোগ করুন",todaysTasks:"আজকের কাজ",manageTasks:"আপনার কাজ ও সময়সীমা পরিচালনা করুন।",addNewTask:"নতুন কাজ যোগ করুন",taskName:"কাজের নাম",allTasks:"সব কাজ",calendarSubtitle:"তারিখ অনুযায়ী কাজ দেখুন।",aiSubtitle:"প্রশ্ন করুন এবং ধাপে ধাপে ব্যাখ্যা পান।",aiPlaceholder:"AI টিউটরকে প্রশ্ন করুন...",askAI:"AI টিউটরকে জিজ্ঞাসা করুন",premiumTitle:"Life Organizer Premium",premiumSubtitle:"অতিরিক্ত সুবিধা আনলক করুন এবং Life Organizer আরও ব্যবহার করুন।",upgradePremium:"Premium-এ আপগ্রেড করুন",settingsSubtitle:"Life Organizer সেটিংস পরিচালনা করুন।",notifications:"নোটিফিকেশন",reminders:"কাজের রিমাইন্ডার পান",language:"ভাষা",chooseLanguage:"অ্যাপের ভাষা বেছে নিন",low:"কম",medium:"মাঝারি",high:"উচ্চ",deadline:"সময়সীমা",noDate:"তারিখ নেই",time:"সময়",noTime:"সময় নেই",noTasks:"এখনও কোনো কাজ নেই।",enterTask:"একটি কাজ লিখুন।",enterQuestion:"একটি প্রশ্ন লিখুন।",thinking:"AI টিউটর ভাবছে...",noAnswer:"কোনো উত্তর পাওয়া যায়নি।",aiError:"AI টিউটর এখন সংযোগ করতে পারেনি। আবার চেষ্টা করুন।",premiumSoon:"Premium সুবিধা শীঘ্রই আসছে।"},
+            Tamil: {home:"முகப்பு",myTasks:"என் பணிகள்",calendar:"நாட்காட்டி",aiTutor:"AI ஆசிரியர்",settings:"அமைப்புகள்",welcome:"Life Organizer-க்கு வரவேற்கிறோம் 👋",subtitle:"உங்கள் பணிகள், அட்டவணை மற்றும் கற்றலை ஒரே இடத்தில் ஒழுங்குபடுத்துங்கள்.",totalTasks:"மொத்த பணிகள்",completed:"முடிந்தவை",pending:"நிலுவையில்",addTaskHeading:"பணி சேர்க்க",addTaskPlaceholder:"புதிய பணியைச் சேர்க்க...",addTask:"பணி சேர்க்க",todaysTasks:"இன்றைய பணிகள்",manageTasks:"உங்கள் பணிகள் மற்றும் காலக்கெடுக்களை நிர்வகிக்கவும்.",addNewTask:"புதிய பணி சேர்க்க",taskName:"பணியின் பெயர்",allTasks:"அனைத்து பணிகள்",calendarSubtitle:"தேதியின்படி பணிகளைப் பார்க்கவும்.",aiSubtitle:"கேள்விகள் கேட்டு படிப்படியாக விளக்கங்களைப் பெறுங்கள்.",aiPlaceholder:"AI ஆசிரியரிடம் கேளுங்கள்...",askAI:"AI ஆசிரியரிடம் கேள்",premiumTitle:"Life Organizer Premium",premiumSubtitle:"கூடுதல் அம்சங்களைத் திறந்து Life Organizer-ஐ மேலும் பயன்படுத்துங்கள்.",upgradePremium:"Premium-க்கு மேம்படுத்து",settingsSubtitle:"Life Organizer அமைப்புகளை நிர்வகிக்கவும்.",notifications:"அறிவிப்புகள்",reminders:"பணி நினைவூட்டல்களைப் பெறுங்கள்",language:"மொழி",chooseLanguage:"செயலி மொழியைத் தேர்ந்தெடுக்கவும்",low:"குறைவு",medium:"நடுத்தரம்",high:"அதிகம்",deadline:"காலக்கெடு",noDate:"தேதி இல்லை",time:"நேரம்",noTime:"நேரம் இல்லை",noTasks:"இன்னும் பணிகள் இல்லை.",enterTask:"ஒரு பணியை உள்ளிடவும்.",enterQuestion:"ஒரு கேள்வியை உள்ளிடவும்.",thinking:"AI ஆசிரியர் யோசிக்கிறார்...",noAnswer:"பதில் கிடைக்கவில்லை.",aiError:"AI ஆசிரியரை இப்போது இணைக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்.",premiumSoon:"Premium அம்சங்கள் விரைவில் கிடைக்கும்."},
+            Telugu: {home:"హోమ్",myTasks:"నా పనులు",calendar:"క్యాలెండర్",aiTutor:"AI ట్యూటర్",settings:"సెట్టింగ్స్",welcome:"Life Organizer కు స్వాగతం 👋",subtitle:"మీ పనులు, షెడ్యూల్ మరియు అభ్యాసాన్ని ఒకే చోట నిర్వహించండి.",totalTasks:"మొత్తం పనులు",completed:"పూర్తయ్యాయి",pending:"మిగిలినవి",addTaskHeading:"పని జోడించండి",addTaskPlaceholder:"కొత్త పని జోడించండి...",addTask:"పని జోడించండి",todaysTasks:"ఈరోజు పనులు",manageTasks:"మీ పనులు మరియు గడువులను నిర్వహించండి.",addNewTask:"కొత్త పని జోడించండి",taskName:"పని పేరు",allTasks:"అన్ని పనులు",calendarSubtitle:"తేదీ ప్రకారం పనులను చూడండి.",aiSubtitle:"ప్రశ్నలు అడిగి దశలవారీ వివరణలు పొందండి.",aiPlaceholder:"AI ట్యూటర్‌ను అడగండి...",askAI:"AI ట్యూటర్‌ను అడగండి",premiumTitle:"Life Organizer Premium",premiumSubtitle:"అదనపు ఫీచర్లను అన్‌లాక్ చేసి Life Organizer‌ను మరింత ఉపయోగించండి.",upgradePremium:"Premium‌కు అప్‌గ్రేడ్ చేయండి",settingsSubtitle:"Life Organizer సెట్టింగ్స్‌ను నిర్వహించండి.",notifications:"నోటిఫికేషన్లు",reminders:"పని రిమైండర్లు పొందండి",language:"భాష",chooseLanguage:"యాప్ భాషను ఎంచుకోండి",low:"తక్కువ",medium:"మధ్యస్థ",high:"అధికం",deadline:"గడువు",noDate:"తేదీ లేదు",time:"సమయం",noTime:"సమయం లేదు",noTasks:"ఇంకా పనులు లేవు.",enterTask:"దయచేసి పని నమోదు చేయండి.",enterQuestion:"దయచేసి ప్రశ్న నమోదు చేయండి.",thinking:"AI ట్యూటర్ ఆలోచిస్తోంది...",noAnswer:"సమాధానం రాలేదు.",aiError:"AI ట్యూటర్‌ను ఇప్పుడు కనెక్ట్ చేయలేకపోయాం. మళ్లీ ప్రయత్నించండి.",premiumSoon:"Premium ఫీచర్లు త్వరలో వస్తాయి."},
+            Marathi: {home:"होम",myTasks:"माझी कामे",calendar:"कॅलेंडर",aiTutor:"AI ट्यूटर",settings:"सेटिंग्ज",welcome:"Life Organizer मध्ये आपले स्वागत आहे 👋",subtitle:"तुमची कामे, वेळापत्रक आणि शिक्षण एका ठिकाणी व्यवस्थित करा.",totalTasks:"एकूण कामे",completed:"पूर्ण",pending:"बाकी",addTaskHeading:"काम जोडा",addTaskPlaceholder:"नवीन काम जोडा...",addTask:"काम जोडा",todaysTasks:"आजची कामे",manageTasks:"तुमची कामे आणि अंतिम मुदती व्यवस्थापित करा.",addNewTask:"नवीन काम जोडा",taskName:"कामाचे नाव",allTasks:"सर्व कामे",calendarSubtitle:"तारखेनुसार कामे पहा.",aiSubtitle:"प्रश्न विचारा आणि टप्प्याटप्प्याने स्पष्टीकरण मिळवा.",aiPlaceholder:"AI ट्यूटरला विचारा...",askAI:"AI ट्यूटरला विचारा",premiumTitle:"Life Organizer Premium",premiumSubtitle:"अतिरिक्त वैशिष्ट्ये अनलॉक करा आणि Life Organizer चा अधिक वापर करा.",upgradePremium:"Premium वर अपग्रेड करा",settingsSubtitle:"Life Organizer सेटिंग्ज व्यवस्थापित करा.",notifications:"सूचना",reminders:"कामांची आठवण मिळवा",language:"भाषा",chooseLanguage:"अॅपची भाषा निवडा",low:"कमी",medium:"मध्यम",high:"उच्च",deadline:"अंतिम मुदत",noDate:"तारीख नाही",time:"वेळ",noTime:"वेळ नाही",noTasks:"अजून कामे नाहीत.",enterTask:"कृपया काम लिहा.",enterQuestion:"कृपया प्रश्न लिहा.",thinking:"AI ट्यूटर विचार करत आहे...",noAnswer:"उत्तर मिळाले नाही.",aiError:"AI ट्यूटरशी सध्या कनेक्ट होऊ शकले नाही. पुन्हा प्रयत्न करा.",premiumSoon:"Premium वैशिष्ट्ये लवकरच उपलब्ध होतील."},
+            Gujarati: {home:"હોમ",myTasks:"મારા કાર્યો",calendar:"કેલેન્ડર",aiTutor:"AI ટ્યુટર",settings:"સેટિંગ્સ",welcome:"Life Organizer માં આપનું સ્વાગત છે 👋",subtitle:"તમારા કાર્યો, સમયપત્રક અને અભ્યાસને એક જગ્યાએ ગોઠવો.",totalTasks:"કુલ કાર્યો",completed:"પૂર્ણ",pending:"બાકી",addTaskHeading:"કાર્ય ઉમેરો",addTaskPlaceholder:"નવું કાર્ય ઉમેરો...",addTask:"કાર્ય ઉમેરો",todaysTasks:"આજના કાર્યો",manageTasks:"તમારા કાર્યો અને સમયમર્યાદા સંભાળો.",addNewTask:"નવું કાર્ય ઉમેરો",taskName:"કાર્યનું નામ",allTasks:"બધા કાર્યો",calendarSubtitle:"તારીખ પ્રમાણે કાર્યો જુઓ.",aiSubtitle:"પ્રશ્નો પૂછો અને પગલું-દર-પગલું સમજણ મેળવો.",aiPlaceholder:"AI ટ્યુટરને પૂછો...",askAI:"AI ટ્યુટરને પૂછો",premiumTitle:"Life Organizer Premium",premiumSubtitle:"વધારાની સુવિધાઓ અનલૉક કરો.",upgradePremium:"Premium પર અપગ્રેડ કરો",settingsSubtitle:"Life Organizer સેટિંગ્સ સંભાળો.",notifications:"સૂચનાઓ",reminders:"કાર્ય રિમાઇન્ડર મેળવો",language:"ભાષા",chooseLanguage:"એપની ભાષા પસંદ કરો",low:"ઓછું",medium:"મધ્યમ",high:"ઉચ્ચ",deadline:"સમયમર્યાદા",noDate:"તારીખ નથી",time:"સમય",noTime:"સમય નથી",noTasks:"હજુ કોઈ કાર્ય નથી.",enterTask:"કૃપા કરીને કાર્ય દાખલ કરો.",enterQuestion:"કૃપા કરીને પ્રશ્ન દાખલ કરો.",thinking:"AI ટ્યુટર વિચારી રહ્યું છે...",noAnswer:"જવાબ મળ્યો નથી.",aiError:"AI ટ્યુટર સાથે જોડાઈ શકાયું નથી. ફરી પ્રયાસ કરો.",premiumSoon:"Premium સુવિધાઓ ટૂંક સમયમાં આવશે."},
+            Kannada: {home:"ಮುಖಪುಟ",myTasks:"ನನ್ನ ಕಾರ್ಯಗಳು",calendar:"ಕ್ಯಾಲೆಂಡರ್",aiTutor:"AI ಟ್ಯೂಟರ್",settings:"ಸೆಟ್ಟಿಂಗ್‌ಗಳು",welcome:"Life Organizer ಗೆ ಸ್ವಾಗತ 👋",subtitle:"ನಿಮ್ಮ ಕಾರ್ಯಗಳು, ವೇಳಾಪಟ್ಟಿ ಮತ್ತು ಕಲಿಕೆಯನ್ನು ಒಂದೇ ಸ್ಥಳದಲ್ಲಿ ಸಂಘಟಿಸಿ.",totalTasks:"ಒಟ್ಟು ಕಾರ್ಯಗಳು",completed:"ಪೂರ್ಣಗೊಂಡವು",pending:"ಬಾಕಿ",addTaskHeading:"ಕಾರ್ಯ ಸೇರಿಸಿ",addTaskPlaceholder:"ಹೊಸ ಕಾರ್ಯ ಸೇರಿಸಿ...",addTask:"ಕಾರ್ಯ ಸೇರಿಸಿ",todaysTasks:"ಇಂದಿನ ಕಾರ್ಯಗಳು",manageTasks:"ನಿಮ್ಮ ಕಾರ್ಯಗಳು ಮತ್ತು ಗಡುವುಗಳನ್ನು ನಿರ್ವಹಿಸಿ.",addNewTask:"ಹೊಸ ಕಾರ್ಯ ಸೇರಿಸಿ",taskName:"ಕಾರ್ಯದ ಹೆಸರು",allTasks:"ಎಲ್ಲಾ ಕಾರ್ಯಗಳು",calendarSubtitle:"ದಿನಾಂಕದ ಪ್ರಕಾರ ಕಾರ್ಯಗಳನ್ನು ನೋಡಿ.",aiSubtitle:"ಪ್ರಶ್ನೆಗಳನ್ನು ಕೇಳಿ ಮತ್ತು ಹಂತ ಹಂತದ ವಿವರಣೆ ಪಡೆಯಿರಿ.",aiPlaceholder:"AI ಟ್ಯೂಟರ್‌ಗೆ ಕೇಳಿ...",askAI:"AI ಟ್ಯೂಟರ್‌ಗೆ ಕೇಳಿ",premiumTitle:"Life Organizer Premium",premiumSubtitle:"ಹೆಚ್ಚುವರಿ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಅನ್ಲಾಕ್ ಮಾಡಿ.",upgradePremium:"Premium ಗೆ ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಿ",settingsSubtitle:"Life Organizer ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ನಿರ್ವಹಿಸಿ.",notifications:"ಅಧಿಸೂಚನೆಗಳು",reminders:"ಕಾರ್ಯ ಜ್ಞಾಪನೆಗಳನ್ನು ಪಡೆಯಿರಿ",language:"ಭಾಷೆ",chooseLanguage:"ಆಪ್ ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ",low:"ಕಡಿಮೆ",medium:"ಮಧ್ಯಮ",high:"ಹೆಚ್ಚು",deadline:"ಗಡುವು",noDate:"ದಿನಾಂಕ ಇಲ್ಲ",time:"ಸಮಯ",noTime:"ಸಮಯ ಇಲ್ಲ",noTasks:"ಇನ್ನೂ ಕಾರ್ಯಗಳಿಲ್ಲ.",enterTask:"ದಯವಿಟ್ಟು ಕಾರ್ಯ ನಮೂದಿಸಿ.",enterQuestion:"ದಯವಿಟ್ಟು ಪ್ರಶ್ನೆ ನಮೂದಿಸಿ.",thinking:"AI ಟ್ಯೂಟರ್ ಯೋಚಿಸುತ್ತಿದೆ...",noAnswer:"ಉತ್ತರ ಸಿಗಲಿಲ್ಲ.",aiError:"AI ಟ್ಯೂಟರ್‌ಗೆ ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",premiumSoon:"Premium ವೈಶಿಷ್ಟ್ಯಗಳು ಶೀಘ್ರದಲ್ಲೇ ಬರುತ್ತವೆ."},
+            Malayalam: {home:"ഹോം",myTasks:"എന്റെ ജോലികൾ",calendar:"കലണ്ടർ",aiTutor:"AI ട്യൂട്ടർ",settings:"ക്രമീകരണങ്ങൾ",welcome:"Life Organizer-ലേക്ക് സ്വാഗതം 👋",subtitle:"നിങ്ങളുടെ ജോലികളും ഷെഡ്യൂളും പഠനവും ഒരിടത്ത് ക്രമീകരിക്കുക.",totalTasks:"ആകെ ജോലികൾ",completed:"പൂർത്തിയായി",pending:"ബാക്കി",addTaskHeading:"ജോലി ചേർക്കുക",addTaskPlaceholder:"പുതിയ ജോലി ചേർക്കുക...",addTask:"ജോലി ചേർക്കുക",todaysTasks:"ഇന്നത്തെ ജോലികൾ",manageTasks:"ജോലികളും സമയപരിധികളും നിയന്ത്രിക്കുക.",addNewTask:"പുതിയ ജോലി ചേർക്കുക",taskName:"ജോലിയുടെ പേര്",allTasks:"എല്ലാ ജോലികളും",calendarSubtitle:"തീയതി പ്രകാരം ജോലികൾ കാണുക.",aiSubtitle:"ചോദ്യങ്ങൾ ചോദിച്ച് ഘട്ടംഘട്ടമായ വിശദീകരണം നേടുക.",aiPlaceholder:"AI ട്യൂട്ടറോട് ചോദിക്കുക...",askAI:"AI ട്യൂട്ടറോട് ചോദിക്കുക",premiumTitle:"Life Organizer Premium",premiumSubtitle:"കൂടുതൽ സവിശേഷതകൾ അൺലോക്ക് ചെയ്യുക.",upgradePremium:"Premium-ലേക്ക് അപ്‌ഗ്രേഡ് ചെയ്യുക",settingsSubtitle:"Life Organizer ക്രമീകരണങ്ങൾ നിയന്ത്രിക്കുക.",notifications:"അറിയിപ്പുകൾ",reminders:"ജോലി ഓർമ്മപ്പെടുത്തലുകൾ നേടുക",language:"ഭാഷ",chooseLanguage:"ആപ്പിന്റെ ഭാഷ തിരഞ്ഞെടുക്കുക",low:"കുറവ്",medium:"മധ്യം",high:"ഉയർന്ന",deadline:"സമയപരിധി",noDate:"തീയതി ഇല്ല",time:"സമയം",noTime:"സമയം ഇല്ല",noTasks:"ഇനിയും ജോലികളില്ല.",enterTask:"ദയവായി ഒരു ജോലി നൽകുക.",enterQuestion:"ദയവായി ഒരു ചോദ്യം നൽകുക.",thinking:"AI ട്യൂട്ടർ ചിന്തിക്കുന്നു...",noAnswer:"ഉത്തരം ലഭിച്ചില്ല.",aiError:"AI ട്യൂട്ടറുമായി ബന്ധപ്പെടാനായില്ല. വീണ്ടും ശ്രമിക്കുക.",premiumSoon:"Premium സവിശേഷതകൾ ഉടൻ ലഭിക്കും."},
+            Punjabi: {home:"ਹੋਮ",myTasks:"ਮੇਰੇ ਕੰਮ",calendar:"ਕੈਲੰਡਰ",aiTutor:"AI ਟਿਊਟਰ",settings:"ਸੈਟਿੰਗਾਂ",welcome:"Life Organizer ਵਿੱਚ ਤੁਹਾਡਾ ਸੁਆਗਤ ਹੈ 👋",subtitle:"ਆਪਣੇ ਕੰਮ, ਸਮਾਂ-ਸਾਰਣੀ ਅਤੇ ਸਿੱਖਣ ਨੂੰ ਇੱਕ ਥਾਂ ਵਿਵਸਥਿਤ ਕਰੋ।",totalTasks:"ਕੁੱਲ ਕੰਮ",completed:"ਪੂਰੇ",pending:"ਬਾਕੀ",addTaskHeading:"ਕੰਮ ਜੋੜੋ",addTaskPlaceholder:"ਨਵਾਂ ਕੰਮ ਜੋੜੋ...",addTask:"ਕੰਮ ਜੋੜੋ",todaysTasks:"ਅੱਜ ਦੇ ਕੰਮ",manageTasks:"ਆਪਣੇ ਕੰਮ ਅਤੇ ਅੰਤਿਮ ਮਿਤੀਆਂ ਸੰਭਾਲੋ।",addNewTask:"ਨਵਾਂ ਕੰਮ ਜੋੜੋ",taskName:"ਕੰਮ ਦਾ ਨਾਮ",allTasks:"ਸਾਰੇ ਕੰਮ",calendarSubtitle:"ਮਿਤੀ ਅਨੁਸਾਰ ਕੰਮ ਵੇਖੋ।",aiSubtitle:"ਸਵਾਲ ਪੁੱਛੋ ਅਤੇ ਕਦਮ-ਦਰ-ਕਦਮ ਵਿਆਖਿਆ ਲਵੋ।",aiPlaceholder:"AI ਟਿਊਟਰ ਨੂੰ ਪੁੱਛੋ...",askAI:"AI ਟਿਊਟਰ ਨੂੰ ਪੁੱਛੋ",premiumTitle:"Life Organizer Premium",premiumSubtitle:"ਵਾਧੂ ਫੀਚਰ ਖੋਲ੍ਹੋ।",upgradePremium:"Premium ਵਿੱਚ ਅਪਗ੍ਰੇਡ ਕਰੋ",settingsSubtitle:"Life Organizer ਸੈਟਿੰਗਾਂ ਸੰਭਾਲੋ।",notifications:"ਸੂਚਨਾਵਾਂ",reminders:"ਕੰਮ ਯਾਦ ਦਿਹਾਨੀਆਂ ਲਵੋ",language:"ਭਾਸ਼ਾ",chooseLanguage:"ਐਪ ਦੀ ਭਾਸ਼ਾ ਚੁਣੋ",low:"ਘੱਟ",medium:"ਦਰਮਿਆਨਾ",high:"ਉੱਚ",deadline:"ਅੰਤਿਮ ਮਿਤੀ",noDate:"ਕੋਈ ਮਿਤੀ ਨਹੀਂ",time:"ਸਮਾਂ",noTime:"ਕੋਈ ਸਮਾਂ ਨਹੀਂ",noTasks:"ਹਾਲੇ ਕੋਈ ਕੰਮ ਨਹੀਂ।",enterTask:"ਕਿਰਪਾ ਕਰਕੇ ਕੰਮ ਲਿਖੋ।",enterQuestion:"ਕਿਰਪਾ ਕਰਕੇ ਸਵਾਲ ਲਿਖੋ।",thinking:"AI ਟਿਊਟਰ ਸੋਚ ਰਿਹਾ ਹੈ...",noAnswer:"ਕੋਈ ਜਵਾਬ ਨਹੀਂ ਮਿਲਿਆ।",aiError:"AI ਟਿਊਟਰ ਨਾਲ ਜੁੜਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",premiumSoon:"Premium ਫੀਚਰ ਜਲਦੀ ਆ ਰਹੇ ਹਨ।"},
+            Urdu: {home:"ہوم",myTasks:"میرے کام",calendar:"کیلنڈر",aiTutor:"AI ٹیوٹر",settings:"ترتیبات",welcome:"Life Organizer میں خوش آمدید 👋",subtitle:"اپنے کام، شیڈول اور سیکھنے کو ایک جگہ منظم کریں۔",totalTasks:"کل کام",completed:"مکمل",pending:"باقی",addTaskHeading:"کام شامل کریں",addTaskPlaceholder:"نیا کام شامل کریں...",addTask:"کام شامل کریں",todaysTasks:"آج کے کام",manageTasks:"اپنے کام اور آخری تاریخیں منظم کریں۔",addNewTask:"نیا کام شامل کریں",taskName:"کام کا نام",allTasks:"تمام کام",calendarSubtitle:"تاریخ کے مطابق کام دیکھیں۔",aiSubtitle:"سوال پوچھیں اور مرحلہ وار وضاحت حاصل کریں۔",aiPlaceholder:"AI ٹیوٹر سے پوچھیں...",askAI:"AI ٹیوٹر سے پوچھیں",premiumTitle:"Life Organizer Premium",premiumSubtitle:"اضافی خصوصیات کھولیں اور Life Organizer سے زیادہ فائدہ اٹھائیں۔",upgradePremium:"Premium میں اپ گریڈ کریں",settingsSubtitle:"Life Organizer کی ترتیبات منظم کریں۔",notifications:"اطلاعات",reminders:"کام کی یاد دہانیاں حاصل کریں",language:"زبان",chooseLanguage:"ایپ کی زبان منتخب کریں",low:"کم",medium:"درمیانہ",high:"زیادہ",deadline:"آخری تاریخ",noDate:"کوئی تاریخ نہیں",time:"وقت",noTime:"کوئی وقت نہیں",noTasks:"ابھی کوئی کام نہیں۔",enterTask:"براہ کرم کام درج کریں۔",enterQuestion:"براہ کرم سوال درج کریں۔",thinking:"AI ٹیوٹر سوچ رہا ہے...",noAnswer:"کوئی جواب موصول نہیں ہوا۔",aiError:"AI ٹیوٹر سے ابھی رابطہ نہیں ہو سکا۔ دوبارہ کوشش کریں۔",premiumSoon:"Premium خصوصیات جلد دستیاب ہوں گی۔"}
+        };
 
-
-        function changeLanguage(language) {
-
-            localStorage.setItem(
-                "lifeOrganizerLanguage",
-                language
-            );
-
-
-            document
-                .getElementById("languageSelector")
-                .value = language;
-
-
-            document
-                .getElementById("settingsLanguage")
-                .value = language;
-
-
-            const translation =
-                translations[language] ||
-                translations.English;
-
-
-            document
-                .getElementById("welcomeTitle")
-                .textContent =
-                translation.welcome;
-
-
-            document
-                .getElementById("welcomeSubtitle")
-                .textContent =
-                translation.subtitle;
-
+        function currentTranslation() {
+            const language = localStorage.getItem("lifeOrganizerLanguage") || "English";
+            return { ...baseEnglish, ...(translations[language] || {}) };
         }
 
+        function changeLanguage(language) {
+            localStorage.setItem("lifeOrganizerLanguage", language);
+
+            const headerSelector = document.getElementById("languageSelector");
+            const settingsSelector = document.getElementById("settingsLanguage");
+            if (headerSelector) headerSelector.value = language;
+            if (settingsSelector) settingsSelector.value = language;
+
+            const t = currentTranslation();
+
+            document.querySelectorAll("[data-i18n]").forEach(element => {
+                const key = element.dataset.i18n;
+                if (t[key] !== undefined) element.textContent = t[key];
+            });
+
+            document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
+                const key = element.dataset.i18nPlaceholder;
+                if (t[key] !== undefined) element.placeholder = t[key];
+            });
+
+            const welcomeTitle = document.getElementById("welcomeTitle");
+            const welcomeSubtitle = document.getElementById("welcomeSubtitle");
+            if (welcomeTitle) welcomeTitle.textContent = t.welcome;
+            if (welcomeSubtitle) welcomeSubtitle.textContent = t.subtitle;
+
+            document.documentElement.lang = {
+                English:"en", Swedish:"sv", Spanish:"es", French:"fr", German:"de",
+                Arabic:"ar", Chinese:"zh", Japanese:"ja", Korean:"ko", Portuguese:"pt",
+                Italian:"it", Dutch:"nl", Turkish:"tr", Russian:"ru", Hindi:"hi",
+                Bengali:"bn", Tamil:"ta", Telugu:"te", Marathi:"mr", Gujarati:"gu",
+                Kannada:"kn", Malayalam:"ml", Punjabi:"pa", Urdu:"ur"
+            }[language] || "en";
+
+            document.documentElement.dir = ["Arabic", "Urdu"].includes(language) ? "rtl" : "ltr";
+
+            renderTasks();
+            renderCalendar();
+        }
 
 
         // ================================
@@ -1626,7 +1637,7 @@
                     "block";
 
                 answerBox.textContent =
-                    "Please enter a question.";
+                    currentTranslation().enterQuestion;
 
                 return;
 
@@ -1637,7 +1648,7 @@
                 "block";
 
             answerBox.textContent =
-                "AI Tutor is thinking...";
+                currentTranslation().thinking;
 
 
             const language =
@@ -1676,7 +1687,7 @@
 
                 answerBox.textContent =
                     data.answer ||
-                    "No answer received.";
+                    currentTranslation().noAnswer;
 
             }
 
@@ -1688,7 +1699,7 @@
                 );
 
                 answerBox.textContent =
-                    "The AI Tutor could not connect right now. Please try again.";
+                    currentTranslation().aiError;
 
             }
 
@@ -1705,7 +1716,7 @@
             document
                 .getElementById("premiumMessage")
                 .textContent =
-                "Premium features will be available soon.";
+                currentTranslation().premiumSoon;
 
         }
 
